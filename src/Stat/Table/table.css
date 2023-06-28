@@ -1,0 +1,83 @@
+header .logo>img {
+  border-radius: 0;
+}
+
+header .record {
+  float: right;
+}
+
+section {
+  /* width: 90%; */
+}
+
+table {
+  width: 100%;
+  display: table;
+  box-sizing: border-box;
+  text-indent: initial;
+  border-spacing: 0px;
+  color: #606266;
+  text-align: left;
+  background-color: #fff;
+}
+
+thead {
+  display: table-header-group;
+  vertical-align: middle;
+  border-collapse: separate;
+  font-weight: 500;
+  font-size: 15px;
+}
+
+th {
+  overflow: hidden;
+  user-select: none;
+  padding: 12px 0;
+  min-width: 0;
+  box-sizing: border-box;
+  text-overflow: ellipsis;
+  vertical-align: middle;
+  position: relative;
+  border: 1px solid #ebebeb;
+}
+
+th+th {
+  border-left: 0 none;
+}
+
+tbody {
+  vertical-align: middle;
+}
+
+tr {
+  font-size: 14px;
+}
+
+tr:hover {
+  background-color: #f5f7fa;
+}
+
+td {
+  padding: 12px 0;
+  min-width: 0;
+  box-sizing: border-box;
+  text-overflow: ellipsis;
+  vertical-align: middle;
+  position: relative;
+  border-bottom: 1px solid #ebebeb;
+  border-left: 1px solid #ebebeb;
+}
+
+tr>td:last-child {
+  border-right: 1px solid #ebebeb;
+}
+
+.cell {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
+  word-break: break-all;
+  line-height: 23px;
+  padding-left: 10px;
+  padding-right: 10px;
+}

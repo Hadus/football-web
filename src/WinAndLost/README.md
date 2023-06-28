@@ -1,2 +1,2 @@
 # Football-web
-big and small
+win and lost

@@ -81,6 +81,7 @@
       }).then(res => {
         const data = res;
         w.optionList = formatChatData(data);
+        w.optionList.push(formatChatData_test(data));
         genAllChart(optionList, filterIndex);
       }).catch(err => {
         console.log("请求失败==>" + err);
@@ -151,7 +152,59 @@
         optionList.push(stat_option);
       });
     }
+
+    /* 方法：处理表格数据 test */
+    function formatChatData_test(data) {
+      const option = getChartConfig('chartSmall');
+      const optionList = [];
+      const {title, seriesData} = w.config.chartMap;
+      const params = {
+        data: data.topRateSummary, 
+        option, optionList, title, seriesData,
+      };
+      formatChatData_test1('topRateSummary', params);
+      return optionList;
+    }
   
+    /* 方法：处理图表 test */
+    function formatChatData_test1(statPeriod, {data, option, optionList, title, seriesData}) {
+      debugger
+      seriesData.forEach((ele, index) => {
+        let stat = {
+          title: {
+            text:  'ML',
+            textStyle: {
+              fontSize: 13,
+              color: '#666'
+            }
+          },
+          legend: {
+            data: [],
+            show: false
+          },
+          xAxis: {
+            ...option.xAxis,
+            data: data.rateMl
+          },
+          series: []
+        };
+        const series = [];
+  
+        ele.forEach((ele_in) => {
+          const legend = w.config.chartMap.legend[ele_in];
+          stat.legend.data.push(legend);
+          series.push({
+            name: legend,
+            type: 'line',
+            data: data[statPeriod][ele_in]
+          });
+        });
+        stat.series = series;
+        const stat_option = Object.assign({}, option, stat);
+        optionList.push(stat_option);
+      });
+    }
+
     /* 方法：获取图表配置 */
     function getChartConfig(type) {
       return w.config[type];

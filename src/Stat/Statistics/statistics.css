@@ -1,0 +1,170 @@
+body {
+  font-size: 12px;
+}
+
+section {
+  padding: 0 20px;
+}
+
+header {
+  border-bottom: 1px solid #D9D9D9;
+  background: #F3F3F3;
+}
+
+header .logo>span {
+  color: #555;
+}
+
+.block {
+  height: auto;
+  border: 1px solid #eee;
+  padding: 15px 30px 10px 30px;
+  box-shadow: 1px 1px 1px 1px #eee;
+  margin-bottom: 2px;
+}
+
+.block:hover {
+  box-shadow: 2px 2px 2px 2px #ddd;
+}
+
+.block>.top {
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  padding: 0 6px;
+  position: relative;
+  top: 3px;
+  margin-bottom: 3px;
+}
+
+.block>.top>div.competitionType {
+  height: 30px;
+  width: 100px;
+  line-height: 30px;
+  background-color: #4579c3;
+  color: #fff;
+  text-align: center;
+  padding: 0 10px;
+  margin-right: 24px;
+  float: left;
+}
+
+
+.block>.top>div.filter {
+  float: right;
+  width: 510px;
+}
+
+.block>.top>div.filter>div.datepicker {
+  float: left;
+}
+
+.block>.top>div.filter>div.filter-box {
+  float: right;
+}
+
+.block>.top>div.filter>div.datepicker>label+label {
+  margin-left: 30px;
+}
+
+.datepicker input {
+  width: 120px;
+}
+
+.stat {
+  box-shadow: 0 0 0 0;
+  padding: 10px 10px 10px 10px;
+  margin: 0px;
+  width: 100%;
+}
+
+.stat:hover {
+  box-shadow: 0 0 0 0;
+}
+
+.stat .top {
+  width: 100%;
+  padding-left: 4px;
+}
+
+.stat .bot {
+  width: 100%;
+  display: flex;
+}
+
+.stat .bot>.block {
+  flex: 1;
+  margin-left: 4px;
+  margin-right: 4px;
+  padding: 10px;
+  border-radius: 6px;
+  position: relative;
+}
+
+.s-container {
+  height: 180px;
+  min-height: 180px;
+}
+
+.s-container>div {
+  height: 100%;
+  width: 100%;
+}
+
+.test .s-container {
+  height: 400px;
+  width: 100%;
+}
+
+.s-full {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  min-width: 40px;
+  height: 26px;
+  color: #409eff;
+  border-color: #c6e2ff;
+  background-color: #ecf5ff;
+  display: none;
+  z-index: 999;
+
+}
+
+.s-full:hover {
+  color: #409eff;
+  border-color: #c6e2ff;
+  background-color: #e1edfa;
+}
+
+.s-full.show {
+  display: block;
+}
+
+
+.dialog-box {
+  left: calc(50% - 650px);
+  top: 10px;
+  height: 98%;
+}
+
+.dialog-box .header-box>.header {
+  position: relative;
+}
+
+.dialog-box .header-box>button {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+
+.dialog-box .content>div {
+  height: 700px;
+}
+
+.dialog-box .block input {
+  width: 80%;
+}
+
+.dialog-box .block input.small {
+  width: 70px;
+}

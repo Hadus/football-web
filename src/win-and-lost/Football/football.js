@@ -9,7 +9,7 @@
       clock: null, // 自动刷新定时器
       isFirstTimeInitBet: true, // 第一次进来界面才会initBet
       getFlag_filters: null, // 过滤条件
-      filter_ensureNode: d.querySelector('#s_filter').querySelector('button'),
+      dom_filter_ensure: d.querySelector('#s_filter').querySelector('button'),
       audio_alert: new Audio(w.ALERT_AUDIO_URL || ''), // 音频对象
       alertTimes: { // 需要报警的次数
         warning: 0,
@@ -18,19 +18,15 @@
       isPlayAudio: false, // 是否播放音频
       filterWithoutAudio: false, // bet 切换触发音频播放
       showTabName: 'index',// 是否为首页
-      mesNode: d.querySelector('#s_mes'), // mes box
-      mesContentNode: d.querySelector('#s_mesContent'), // mes content
+      dom_mes: d.querySelector('#s_mes'), // mes box
+      dom_mesContent: d.querySelector('#s_mesContent'), // mes content
       mesCallback: null, // mes 的回调函数
       isShowAllBet: true, // 是否显示所有已投注比赛
       hideBetList: [], // 已投注的比赛列表
-      dialogNode: d.querySelector('#s_dialog'), // mes box
-      dialogContentNode: d.querySelector('#s_dialogContent'), // mes box
+      dom_dialog: d.querySelector('#s_dialog'), // mes box
+      dom_dialogContent: d.querySelector('#s_dialogContent'), // mes box
       dialogData: null, // dialog 的数据
-      dragBox: { // 拖拽元素的位置
-        node: null,
-        left: 0,
-        top: 0
-      },
+      dialogCallback: null, // dialog 的回调函数
     });
 
     defineServerPath(w.location.host); // 定义当前 server 环境
@@ -39,7 +35,7 @@
     bindBet(betAction);
     bindFilter(filterAction);
     bindSwitchAudio();
-    bindTabs();
+    // bindTabs();
     // bindForceRefresh(); // 绑定强制刷新
     bindShowAllBet(); // 绑定显示所有已投注
     bindCancleMes(); // 弹窗-取消mes
@@ -62,6 +58,61 @@
           w.flagServerPath = 0;
         }
       }
+    }
+
+    bindChangePW(); // 修改密码
+    /* 方法：获取修改密码 */
+    function bindChangePW() {
+      const dom_changePWNode = d.querySelector('#s_changePW');
+      dom_changePWNode.addEventListener('click', function () {
+        w.flag_dialogEnsure = -1;
+        w.dialogCallback = changePW_api;
+        initDialogContent();
+      })
+    }
+    
+    /* 方法：api 修改密码 */
+    function changePW_api(params) {
+      let data = params || {
+        
+      }
+      const api_url = w.API_URL.changePwd;
+      ajaxPromise({
+        type: 'post',
+        url: api_url,
+        data
+      }).then(res => {
+        if(res.status===200){
+          alert('密码修改成功。');
+          clearDialogContent();
+        } else {
+          alert('修改密码失败，请重试！');
+        }
+      }).catch(err => {
+        console.log("请求失败==>" + err);
+        alert('请求失败，请联系管理员。');
+      })
+    }
+        
+    /* 方法：验证修改密码输入 */
+    function verfyChangePWInput(oldPassword, newPassword, verfyPassword){
+      if(!oldPassword){
+        alert('请输入旧密码！');
+        return false;
+      }
+      if(!newPassword){
+        alert('请输入新密码！');
+        return false;
+      }
+      if(!verfyPassword){
+        alert('请再次输入确认密码！');
+        return false;
+      }
+      if(newPassword !== verfyPassword){
+        alert('两次密码输入不一致，请重新输入！');
+        return false;
+      }
+      return true;
     }
 
     /* 方法：初始化 table */
@@ -309,7 +360,7 @@
       const s_type = s_filter.querySelector('#s_type')
       const s_level = s_filter.querySelector('#s_level')
       const s_team = s_filter.querySelector('#s_team')
-      w.filter_ensureNode.addEventListener('click', (e) => {
+      w.dom_filter_ensure.addEventListener('click', (e) => {
         callback({
           type: s_type.value.trim(),
           level: s_level.value.trim(),
@@ -387,12 +438,12 @@
 
       ajaxPromise({
         type: 'post',
-        url: getCurrentUrl() + api_url,
+        url:  api_url,
         data
       }).then(res => {
         w.response = res;
         w.listData_index = res.data;
-        w.filter_ensureNode.click();
+        w.dom_filter_ensure.click();
         if (isFirstTimeInitBet) {
           const bet_params = {
             jzPayAmount: res.jzPayAmount,
@@ -442,7 +493,7 @@
       setTimeout(() => {
         w.response = w.mock.res;
         w.listData_index = w.mock.res.data;
-        w.filter_ensureNode.click();
+        w.dom_filter_ensure.click();
         if (isFirstTimeInitBet) {
           const bet_params = {
             jzPayAmount: w.mock.res.jzPayAmount,
@@ -478,8 +529,8 @@
 
     /* 方法：预警弹窗 */
     function audioAlert() {
-      w.mesNode.classList.add('show');
-      w.mesContentNode.innerText = '是否开启预警提醒？';
+      w.dom_mes.classList.add('show');
+      w.dom_mesContent.innerText = '是否开启预警提醒？';
       w.mesCallback = () => {
         d.querySelector('#s_audio_select').click();
       };
@@ -498,17 +549,6 @@
           audioClose();
         }
       })
-    }
-
-    /* 方法：获取当前网址信息 */
-    function getCurrentUrl() {
-      let origin = '';
-      if(w.server.cors && !w.location.host){
-        origin = w.server.path;
-      } else {
-        origin = w.location.origin;
-      }
-      return origin + '/';
     }
 
     /* 方法：绑定 tabs */
@@ -543,7 +583,7 @@
           this.classList.remove('active');
         }
         w.filterWithoutAudio = true;
-        w.filter_ensureNode.click();
+        w.dom_filter_ensure.click();
       })  
     } 
 
@@ -561,7 +601,7 @@
             hiddenCalcIds: [calcId]
           }, () => {
             w.filterWithoutAudio = true;
-            w.filter_ensureNode.click();
+            w.dom_filter_ensure.click();
           });
         })
       })
@@ -596,7 +636,7 @@
 
       ajaxPromise({
         type: 'post',
-        url: getCurrentUrl() + api_url,
+        url:  api_url,
         data
       }).then(res => {
         w.hideBetList = res.hiddenCalcIds;
@@ -641,7 +681,6 @@
           this.classList.toggle('active');
           const index = this.dataset['index'];
           showObj = listData_index[index];
-          dialogNode.classList.add('show');
           initDialogContent(showObj);
           d.querySelector('html').classList.add('no-scroll');
           d.querySelector('body').classList.add('no-scroll');
@@ -667,7 +706,7 @@
 
       ajaxPromise({
         type: 'post',
-        url: getCurrentUrl() + api_url,
+        url:  api_url,
         data
       }).then(res => {
         console.log("api 请求成功==>");
@@ -693,8 +732,8 @@
 
     /* 方法：获取 dialog 数据用于计算请求 */
     function getDialogDataForCalculator() {
-      const inputNodeList = dialogContentNode.querySelectorAll('input[data-input-key]');      
-      const outputNodeList = dialogContentNode.querySelectorAll('input[data-output-key]');
+      const inputNodeList = dom_dialogContent.querySelectorAll('input[data-input-key]');      
+      const outputNodeList = dom_dialogContent.querySelectorAll('input[data-output-key]');
       const inputValueList = {};
       inputNodeList.forEach((ele) => {
         const key = ele.dataset['inputKey']; // 请求的input 框
@@ -773,7 +812,7 @@
       const invaildInputObj = {
         length: 0
       };
-      const inputNodeList = dialogContentNode.querySelectorAll('input[data-input-key]');      
+      const inputNodeList = dom_dialogContent.querySelectorAll('input[data-input-key]');      
       inputNodeList.forEach((ele) => {
         // ele.classList.remove('danger');
         if(ele.dataset['inputKey'] === 'jzPayAmount' && !ele.value.trim()){
@@ -806,8 +845,8 @@
     /* 方法：强制刷新数据 */  
     function bindForceRefresh() {
       d.querySelector('#s_forceRefresh').addEventListener('click',function (e) {
-        w.mesNode.classList.add('show');
-        w.mesContentNode.innerText = '确定强制刷新后台数据吗？';
+        w.dom_mes.classList.add('show');
+        w.dom_mesContent.innerText = '确定强制刷新后台数据吗？';
         w.mesCallback = forceRefreshAction;
         pageScroll(false);
       })
@@ -824,7 +863,7 @@
     /* 方法：message 取消 */  
     function bindCancleMes() {
       d.querySelector('#s_cancelMes').addEventListener('click',function (e) {
-        w.mesNode.classList.remove('show');
+        w.dom_mes.classList.remove('show');
         pageScroll(true);
       })
     }
@@ -832,7 +871,7 @@
     /* 方法：message 确定 */  
     function bindEnsureMes() {
       d.querySelector('#s_ensureMes').addEventListener('click',function (e) {
-        w.mesNode.classList.remove('show');
+        w.dom_mes.classList.remove('show');
         w.mesCallback();
         w.mesCallback = null; // 执行完置空
         pageScroll(true);
@@ -842,9 +881,7 @@
     /* 方法：dialog 取消 */  
     function bindCancleDialog() {
       d.querySelector('#s_cancelDialog').addEventListener('click',function (e) {
-        w.dialogNode.classList.remove('show');
-        dialogContentNode.innerHTML = '';
-        w.dialogData = null;
+        clearDialogContent();
         pageScroll(true);
       })
     }
@@ -852,191 +889,150 @@
     /* 方法：dialog 确定 */  
     function bindEnsureDialog() {
       d.querySelector('#s_ensureDialog').addEventListener('click',function (e) {
-        const invaildInputObj = validCalculatorInput();
-        if(invaildInputObj.length){
-          alert('请输入投注金额！');
-          return;
-        };
-        const {res_params, outputNodeList} = getDialogDataForCalculator();
-        getCalculator(res_params, outputNodeList);
+        if(!w.flag_dialogEnsure){
+          const invaildInputObj = validCalculatorInput();
+          if(invaildInputObj.length){
+            alert('请输入投注金额！');
+            return;
+          };
+          const {res_params, outputNodeList} = getDialogDataForCalculator();
+          getCalculator(res_params, outputNodeList);
+        } else if(w.flag_dialogEnsure === -1){ // 修改密码
+          const username = dom_dialogContent.querySelector('#s_change_username').value;
+          const oldPassword = dom_dialogContent.querySelector('#s_change_oldPassword').value;
+          const newPassword = dom_dialogContent.querySelector('#s_change_newPassword').value;
+          const verfyPassword = dom_dialogContent.querySelector('#s_change_verfyPassword').value;
+          if(!verfyChangePWInput(oldPassword, newPassword, verfyPassword)){
+            return;
+          }
+          let params = {
+            username,
+            oldPwd: oldPassword,
+            newPwd: newPassword
+          };
+          w.dialogCallback(params);
+        }
       })
     }
 
     function initDialogContent(obj) {
-      dialogContentNode.innerHTML = '';
-      const ele = w.dialogData = Object.assign({}, obj);
+      w.dom_dialog.classList.add('show');
+      const dom_dialogHeader = dom_dialog.querySelector('.header');
       let nodeStr = '';
-      if(showTabName === 'index'){
-        let hgLRateFormat02 = ele.hgLRate.trim(),hgLRateFormat01 = '';
-        if(hgLRateFormat02.includes(' ')){
-          hgLRateFormat01 = hgLRateFormat02.split(' ')[0];
-          hgLRateFormat02 = hgLRateFormat02.split(' ')[1];
-        }
-        nodeStr += `
-          <div>
-            <label>请输入投注金额：
-              <input class="big" data-input-key="jzPayAmount" type="number" value="10000"> 元
-            </label>
-          </div></br>
-          <div class="block">
-            <div class="top">
-              <div class="competitionType">
-                <p>${ele.competitionType}</p>
-                <span></span>
-              </div>
-              <div class="level">
-                <span>${ele.level}</span>
-                <span>${ele.matchTime}</span>
-              </div>
-              <div class="teams">
-                <span class="team1">${ele.teamNameH}</span>
-                <span class="icon-vs"></span>
-                <span class="team2">${ele.teamNameA}</span>
-              </div>
-            </div>
-            <div class="bot">
-              <table>
-                <tr class="head">
-                  <th width="44%" colspan="4">
-                    <span>${ele.jzRateType}</span>
-                  </th>
-                  <th width="40%" colspan="3">
-                    <span>${ele.hgRateType}</span>
-                  </th>
-                  <th width="20%" colspan="1">利润</th>
-                </tr>
-                <tr>
-                  <td width="5%">
-                    <input type="text" disabled data-input-key="jzPValue" value=${ele.jzPValue > 0 ? "+" + ele.jzPValue : ele.jzPValue}>
-                  </td>
-                  <td width="10%">
-                    <input type="number" data-input-key="jzWRate" value=${ele.jzWRate||''}>
-                  </td>
-                  <td width="10%">
-                    <input type="number" data-input-key="jzDRate" value=${ele.jzDRate||''}>
-                  </td>
-                  <td width="10%">
-                    <input type="number" data-input-key="jzLRate" value=${ele.jzLRate||''}>
-                  </td>
-                  <td width="10%">
-                    <input type="number" data-input-key="hgWRate" value=${ele.hgWRate||''}>
-                  </td>
-                  <td width="18%">
-                    <input type=${ele.hgPDisplay===''?'number':'text'}" ${ele.hgPDisplay===''?'':'disabled'} data-input-key="hgPValue" data-input-res=${ele.hgPDisplay===''?ele.hgDRate:ele.hgPValue} value="${ele.hgPDisplay===''?ele.hgDRate:ele.hgPDisplay}">
-                    <input type="number" class="hide" disabled data-input-key="hgDRate" value=${ele.hgDRate}>
-                  </td>
-                  <td width="18%">
-                    <output>${hgLRateFormat01}</output>
-                    <input type="number" class="${hgLRateFormat01&&'small'}" data-input-key="hgLRate" value=${hgLRateFormat02||''}>
-                  </td>
-                  <td>
-                    <input type="number" data-output-key="totalBenefitPoint" disabled value=${ele.totalBenefitPoint||''}>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="v-hide"></td>
-                  <td class="bold">
-                    <input type="number" data-output-key="jzWPayAmount" disabled value=${ele.jzWPayAmount>0? ele.jzWPayAmount : ''}>
-                  </td>
-                  <td class="bold">
-                    <input type="number" data-output-key="jzDPayAmount" disabled value=${ele.jzDPayAmount>0? ele.jzDPayAmount : ''}>
-                  </td>
-                  <td class="bold">
-                    <input type="number" disabled value=${ele.jzLPayAmount>0? ele.jzLPayAmount : ''}>
-                  </td>
-                  <td class="bold">
-                    <input type="number" data-output-key="hgWPayAmount" disabled value=${ele.hgWPayAmount>0? ele.hgWPayAmount : ''}>
-                  </td>
-                  <td class="bold">
-                    <input type="number" data-output-key="hgDPayAmount" disabled value=${ele.hgDPayAmount>0? ele.hgDPayAmount : ''}>
-                  </td>
-                  <td class="bold">
-                    <input type="number" data-output-key="hgLPayAmount" disabled value=${ele.hgLPayAmount>0? ele.hgLPayAmount : ''}>
-                  </td>
-                  <td class="bold">
-                    <input type="number" data-output-key="totalBenefitAmount" disabled value=${ele.totalBenefitAmount!=0? ele.totalBenefitAmount : ''}>
-                  </td>
-                </tr>
-              </table>
-            </div>
-          </div>
-        `;
-      }
 
-      dialogContentNode.innerHTML = nodeStr;
-    }
-
-    /* 方法：页面是否可以滚动 */
-    function pageScroll(flag = true) {
-      if(flag){
-        d.querySelector('html').classList.remove('no-scroll');
-        d.querySelector('body').classList.remove('no-scroll');
-        resetDrag(); // 页面可以滚动时候reset
-      } else{
-        d.querySelector('html').classList.add('no-scroll');
-        d.querySelector('body').classList.add('no-scroll');
-      }
-    }
-
-    /* 方法：拖拽 */
-    function bindDragBox() {
-      const dragList = d.querySelectorAll('.s-drag'); 
-      dragList.forEach((ele) => {
-        const box = ele.querySelector('.s-box');
-        const title = ele.querySelector('.header-box');
-        const titleBg = title.style.backgroundColor;
-        const dragW = d.body.clientWidth;
-        const dragH = d.body.clientHeight;
-
-        let boxStartX = 0;
-        let boxStartY = 0;
-
-        title.style.cursor = 'move';
-        // 开始拖拽
-        title.addEventListener('mousedown', function (e) {
-          const boxW = box.offsetWidth;
-          w.dragBox = {
-            node: box,
-            left: box.offsetLeft,
-            top: box.offsetTop
-          };
-          const maxLeft = Number(dragW - boxW);
-          const maxTop = Number(dragH);
-
-          boxStartX = box.offsetLeft;
-          boxStartY = box.offsetTop;
-
-          const x = e.pageX - boxStartX;
-          const y = e.pageY - boxStartY;
-          d.addEventListener('mousemove', move)
-          d.addEventListener('mouseup', function () {
-            d.removeEventListener('mousemove',move);
-            title.style.background = titleBg;
-            d.body.classList.remove('no-select');
-          })
-
-          function move(e) {
-            title.style.background = '#fafafa';
-            d.body.classList.add('no-select');
-            let nowX = e.pageX - x;
-            let nowY = e.pageY - y;
-            nowX = nowX <= 0 ? 0 : nowX;
-            nowY = nowY <= 0 ? 0 : nowY;
-
-            nowX = nowX > maxLeft ? maxLeft : nowX;
-            nowY = nowY > maxTop ? maxTop : nowY;
-            
-            box.style.left = nowX + 'px';
-            box.style.top = nowY + 'px';
+      if(!w.flag_dialogEnsure){
+        dom_dialogHeader.innerText = '赔率计算器：';
+        const ele = w.dialogData = Object.assign({}, obj);
+        if(showTabName === 'index'){
+          let hgLRateFormat02 = ele.hgLRate.trim(),hgLRateFormat01 = '';
+          if(hgLRateFormat02.includes(' ')){
+            hgLRateFormat01 = hgLRateFormat02.split(' ')[0];
+            hgLRateFormat02 = hgLRateFormat02.split(' ')[1];
           }
-        })
-      })
+          nodeStr += `
+            <div>
+              <label>请输入投注金额：
+                <input class="big" data-input-key="jzPayAmount" type="number" value="10000"> 元
+              </label>
+            </div></br>
+            <div class="block">
+              <div class="top">
+                <div class="competitionType">
+                  <p>${ele.competitionType}</p>
+                  <span></span>
+                </div>
+                <div class="level">
+                  <span>${ele.level}</span>
+                  <span>${ele.matchTime}</span>
+                </div>
+                <div class="teams">
+                  <span class="team1">${ele.teamNameH}</span>
+                  <span class="icon-vs"></span>
+                  <span class="team2">${ele.teamNameA}</span>
+                </div>
+              </div>
+              <div class="bot">
+                <table>
+                  <tr class="head">
+                    <th width="44%" colspan="4">
+                      <span>${ele.jzRateType}</span>
+                    </th>
+                    <th width="40%" colspan="3">
+                      <span>${ele.hgRateType}</span>
+                    </th>
+                    <th width="20%" colspan="1">利润</th>
+                  </tr>
+                  <tr>
+                    <td width="5%">
+                      <input type="text" disabled data-input-key="jzPValue" value=${ele.jzPValue > 0 ? "+" + ele.jzPValue : ele.jzPValue}>
+                    </td>
+                    <td width="10%">
+                      <input type="number" data-input-key="jzWRate" value=${ele.jzWRate||''}>
+                    </td>
+                    <td width="10%">
+                      <input type="number" data-input-key="jzDRate" value=${ele.jzDRate||''}>
+                    </td>
+                    <td width="10%">
+                      <input type="number" data-input-key="jzLRate" value=${ele.jzLRate||''}>
+                    </td>
+                    <td width="10%">
+                      <input type="number" data-input-key="hgWRate" value=${ele.hgWRate||''}>
+                    </td>
+                    <td width="18%">
+                      <input type=${ele.hgPDisplay===''?'number':'text'}" ${ele.hgPDisplay===''?'':'disabled'} data-input-key="hgPValue" data-input-res=${ele.hgPDisplay===''?ele.hgDRate:ele.hgPValue} value="${ele.hgPDisplay===''?ele.hgDRate:ele.hgPDisplay}">
+                      <input type="number" class="hide" disabled data-input-key="hgDRate" value=${ele.hgDRate}>
+                    </td>
+                    <td width="18%">
+                      <output>${hgLRateFormat01}</output>
+                      <input type="number" class="${hgLRateFormat01&&'small'}" data-input-key="hgLRate" value=${hgLRateFormat02||''}>
+                    </td>
+                    <td>
+                      <input type="number" data-output-key="totalBenefitPoint" disabled value=${ele.totalBenefitPoint||''}>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="v-hide"></td>
+                    <td class="bold">
+                      <input type="number" data-output-key="jzWPayAmount" disabled value=${ele.jzWPayAmount>0? ele.jzWPayAmount : ''}>
+                    </td>
+                    <td class="bold">
+                      <input type="number" data-output-key="jzDPayAmount" disabled value=${ele.jzDPayAmount>0? ele.jzDPayAmount : ''}>
+                    </td>
+                    <td class="bold">
+                      <input type="number" disabled value=${ele.jzLPayAmount>0? ele.jzLPayAmount : ''}>
+                    </td>
+                    <td class="bold">
+                      <input type="number" data-output-key="hgWPayAmount" disabled value=${ele.hgWPayAmount>0? ele.hgWPayAmount : ''}>
+                    </td>
+                    <td class="bold">
+                      <input type="number" data-output-key="hgDPayAmount" disabled value=${ele.hgDPayAmount>0? ele.hgDPayAmount : ''}>
+                    </td>
+                    <td class="bold">
+                      <input type="number" data-output-key="hgLPayAmount" disabled value=${ele.hgLPayAmount>0? ele.hgLPayAmount : ''}>
+                    </td>
+                    <td class="bold">
+                      <input type="number" data-output-key="totalBenefitAmount" disabled value=${ele.totalBenefitAmount!=0? ele.totalBenefitAmount : ''}>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+          `;
+        }
+      } else if(w.flag_dialogEnsure == -1){ // 修改密码
+        dom_dialogHeader.innerText = '修改密码：';
+        nodeStr = w.getNodeStr_changePW();
+      }
+
+      dom_dialogContent.innerHTML = nodeStr;
     }
 
-    /* 方法：恢复拖拽 */
-    function resetDrag() {
-      w.dragBox.node && (w.dragBox.node.style.left = w.dragBox.left + 'px');
-      w.dragBox.node && (w.dragBox.node.style.top = w.dragBox.top + 'px');
+    function clearDialogContent(){
+      w.dialogCallback = null; // 执行完置空
+      w.dom_dialog.classList.remove('show');
+      dom_dialogContent.innerHTML  = '';
+      w.flag_dialogEnsure = 0;
+      w.dialogData = null;
     }
   }
 )(window, document);

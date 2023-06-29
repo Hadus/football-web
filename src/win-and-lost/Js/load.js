@@ -33,5 +33,7 @@ window.onload = function () {
   window.mock = {};
   initJSON(time);
   initCommonJS(time);
-  initJS(time);
+  setTimeout(() => {
+    initJS(time);
+  }, 10);
 }

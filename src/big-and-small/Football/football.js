@@ -35,6 +35,7 @@
     bindBet(betAction);
     bindFilter(filterAction);
     bindSwitchAudio();
+    // bindTabs();
     // bindForceRefresh(); // 绑定强制刷新
     bindShowAllBet(); // 绑定显示所有已投注
     bindCancleMes(); // 弹窗-取消mes
@@ -62,8 +63,8 @@
     bindChangePW(); // 修改密码
     /* 方法：获取修改密码 */
     function bindChangePW() {
-      const changePWNode = d.querySelector('#s_changePW');
-      changePWNode.addEventListener('click', function () {
+      const dom_changePWNode = d.querySelector('#s_changePW');
+      dom_changePWNode.addEventListener('click', function () {
         w.flag_dialogEnsure = -1;
         w.dialogCallback = changePW_api;
         initDialogContent();
@@ -575,6 +576,27 @@
       })
     }
 
+    /* 方法：绑定 tabs */
+    function bindTabs() {
+      const s_tab_List = d.querySelectorAll('#s_tabsBox>li');
+      const s_tabContent_list = d.querySelectorAll('div>.table');
+      s_tab_List.forEach((ele, index) => {
+        ele.addEventListener('click', function (e) {
+          const tabName = ele.dataset['tab'];
+          if(tabName === w.showTabName){
+            return false;
+          }
+          s_tabContent_list.forEach((ele_inner, index_inner) => {
+            ele_inner.classList.remove('show');
+            s_tab_List[index_inner].classList.remove('active');
+          })
+          s_tabContent_list[index].classList.add('show');
+          ele.classList.add('active');
+          w.showTabName = tabName;
+        })
+      })
+    }
+
     /* 方法：绑定显示所有已投注 */
     function bindShowAllBet() {
       const s_showAllBet = d.querySelector('#s_showAllBet');
@@ -868,7 +890,7 @@
     /* 方法：dialog 确定 */  
     function bindEnsureDialog() {
       d.querySelector('#s_ensureDialog').addEventListener('click',function (e) {
-        if(!w.flag_dialogEnsure){ // 添加用户
+        if(!w.flag_dialogEnsure){
           const invaildInputObj = validCalculatorInput();
           if(invaildInputObj.length){
             alert('请输入投注金额！');

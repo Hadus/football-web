@@ -272,6 +272,7 @@ body {
   font-size: 14px;
   line-height: 38px;
   position: relative;
+  display: none;
 }
 
 .tabs>.tab-bar {

@@ -130,7 +130,7 @@ body {
   display: inline-block;
   width: 22px;
   height: 22px;
-  background: url("../lib/images/icon-vs.png") repeat-x left top;
+  background: url("../Lib/images/icon-vs.png") repeat-x left top;
   margin: 0 3px;
 }
 
@@ -212,13 +212,13 @@ body {
 .trend.trend-up::before {
   width: 18px;
   height: 18px;
-  background-image: url("../lib/images/up-bold.png");
+  background-image: url("../Lib/images/up-bold.png");
 }
 
 .trend.trend-down::before {
   width: 18px;
   height: 18px;
-  background-image: url("../lib/images/down-bold.png");
+  background-image: url("../Lib/images/down-bold.png");
   margin-bottom: -4px;
 }
 

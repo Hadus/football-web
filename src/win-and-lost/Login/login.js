@@ -87,7 +87,7 @@
     function getVerifyCode() {
       const time = new Date().getTime();
       const src = w.BISIC_URL + w.API_URL.verifyCode + '?' + time;
-      dom_showVerifyCode.style['backgroundImage'] = `url(${src})`;
+      src && dom_showVerifyCode.style['backgroundImage'] = `url(${src})`;
     }
 
     /* 方法：验证登录 */

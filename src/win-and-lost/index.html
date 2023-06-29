@@ -10,10 +10,11 @@
   <meta http-equiv="Cache-control" content="no-cache">
   <meta http-equiv="Cache" content="no-cache">
   <title>竞足分析</title>
-  <link rel="bookmark" href="./lib/images/favicon.ico" type="image/x-icon">
-  <link rel="shortcut icon" href="./lib/images/favicon.ico">
-  <link rel="stylesheet" href="./index.css">
-  <script src="./index.js"></script>
+  <link rel="bookmark" href="./Lib/images/favicon.ico" type="image/x-icon">
+  <link rel="shortcut icon" href="./Lib/images/favicon.ico">
+  <link rel="stylesheet" href="./Css/index.css">
+  <link rel="stylesheet" href="./Css/page.common.css">
+  <link rel="stylesheet" href="./Football/football.css">
 </head>
 
 <body>
@@ -25,55 +26,57 @@
       </div>
     </div>
   </header>
-  <div class="bet">
-    <ul id="s_bet">
-      <li><label>体彩投注：<input class="big" id="s_jzPayAmount" type="number"></label></li>
-      <li><label>体彩返点：<input id="s_jzRebatePoint" type="number"></label></li>
-      <li><label>皇冠欧返点：<input id="s_hgERebatePoint" type="number"></label></li>
-      <li><label>皇冠亚返点：<input id="s_hgARebatePoint" type="number"></label></li>
-      <li><label>预警利润 > <input class="small" id="s_hightBenefitPoint" type="number"> %</label></li>
-      <li><label>跟踪利润 > <input class="small" id="s_middleBenefitPoint" type="number"> %</label></li>
-      <li><label>刷新频率：<input id="s_refreshFreq" type="number"> 秒</label></li>
-      <li><button class="primary">确定</button></li>
-    </ul>
-  </div>
-  <div class="list" id="s_list">
-    <div class="filter" id="s_filter">
-      <ul>
-        <li><label>比赛类型：<input class="big" id="s_type" type="text"></label></li>
-        <li><label>级别：<input class="big" id="s_level" type="text"></label></li>
-        <li><label>队伍：<input class="big" id="s_team" type="text"></label></li>
-        <li>
-          显示已投注：
-          <div class="switch active" id="s_showAllBet">
-            <div class="switch-handle"></div>
-          </div>
-        </li>
-        <li><button class="small primary">筛选</button></li>
-        <li class="audio_select">
-          预警提醒：
-          <div class="switch" id="s_audio_select">
-            <div class="switch-handle"></div>
-          </div>
-        </li>
+  <section>
+    <div class="bet">
+      <ul id="s_bet">
+        <li><label>体彩投注：<input class="big" id="s_jzPayAmount" type="number"></label></li>
+        <li><label>体彩返点：<input id="s_jzRebatePoint" type="number"></label></li>
+        <li><label>皇冠欧返点：<input id="s_hgERebatePoint" type="number"></label></li>
+        <li><label>皇冠亚返点：<input id="s_hgARebatePoint" type="number"></label></li>
+        <li><label>预警利润 > <input class="small" id="s_hightBenefitPoint" type="number"> %</label></li>
+        <li><label>跟踪利润 > <input class="small" id="s_middleBenefitPoint" type="number"> %</label></li>
+        <li><label>刷新频率：<input id="s_refreshFreq" type="number"> 秒</label></li>
+        <li><button class="primary">确定</button></li>
       </ul>
     </div>
-    <div class="tabs">
-      <div class="tab-bar">
-        <ul id="s_tabsBox">
-          <li data-tab="index" class="active">竟足</li>
+    <div class="list" id="s_list">
+      <div class="filter" id="s_filter">
+        <ul>
+          <li><label>比赛类型：<input class="big" id="s_type" type="text"></label></li>
+          <li><label>级别：<input class="big" id="s_level" type="text"></label></li>
+          <li><label>队伍：<input class="big" id="s_team" type="text"></label></li>
+          <li>
+            显示已投注：
+            <div class="switch active" id="s_showAllBet">
+              <div class="switch-handle"></div>
+            </div>
+          </li>
+          <li><button class="small primary">筛选</button></li>
+          <li class="audio_select">
+            预警提醒：
+            <div class="switch" id="s_audio_select">
+              <div class="switch-handle"></div>
+            </div>
+          </li>
         </ul>
       </div>
-      <!-- 暂时关闭 -->
-      <!-- <div class="force-refresh">
+      <div class="tabs">
+        <div class="tab-bar">
+          <ul id="s_tabsBox">
+            <li data-tab="index" class="active">竟足</li>
+          </ul>
+        </div>
+        <!-- 暂时关闭 -->
+        <!-- <div class="force-refresh">
         <button class="success" id="s_forceRefresh">强制刷新后台数据</button>
       </div> -->
-    </div>
-    <div class="table table-index show" id="s_table_index">
+      </div>
+      <div class="table table-index show" id="s_table_index">
+
+      </div>
 
     </div>
-
-  </div>
+  </section>
   </div>
   <div class="s-drag message-box-wrapper" id="s_mes">
     <div class="s-box message-box">

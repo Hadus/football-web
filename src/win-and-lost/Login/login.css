@@ -212,8 +212,12 @@ input::placeholder {
   border: 1px solid #b4bbcc;
   border-radius: 4px;
   border: 1px solid #b4bbcc;
-  background-color: #fff;
   user-select: none;
+  background-image: url(../Lib/images/refresh.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  background-origin: content-box;
 }
 
 .show-verify-code img {

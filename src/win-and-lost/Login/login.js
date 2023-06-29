@@ -7,7 +7,6 @@
     const dom_login = d.querySelector('#login');
     const dom_verifyCode = d.querySelector('#verifyCode');
     const dom_showVerifyCode = d.querySelector('#showVerifyCode');
-    const dom_showVerifyCodeImg = d.querySelector('#showVerifyCodeImg');
     const dom_showError = d.querySelector('#error>p');
     getVerifyCode(); // 获取验证码
     refreshVerifyCode(); // 点击刷新验证码 
@@ -87,7 +86,8 @@
     /* 方法：验证登录 */
     function getVerifyCode() {
       const time = new Date().getTime();
-      dom_showVerifyCodeImg.src = w.BISIC_URL + w.API_URL.verifyCode + '?' + time;
+      const src = w.BISIC_URL + w.API_URL.verifyCode + '?' + time;
+      dom_showVerifyCode.style['backgroundImage'] = `url(${src})`;
     }
 
     /* 方法：验证登录 */

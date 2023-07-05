@@ -171,7 +171,7 @@ body {
 }
 
 .block table tr td {
-  background: url("../lib/images/td.png") repeat-x left top;
+  background: url("../Lib/images/td.png") repeat-x left top;
 }
 
 .block table tr td.red {

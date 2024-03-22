@@ -158,8 +158,7 @@
             tdClass_totalBenefitPoint = 'tips yellow';
             ele.isBet === -1 && alert_times_ttg.warning++;
           }
-          
-          nodeStr_ttg += `
+          const nodeStr_ttg_main= `
             <div class="block">
               <div class="top">
                 <div class="competitionType">
@@ -242,8 +241,69 @@
                   </tr>
                 </table>
               </div>
-            </div>
+              <!-- lose </div> -->
           `;
+          let nodeStr_ttg_history = '';
+          if(ele.hisTopTtg) nodeStr_ttg_history = `
+            <div class="bot bot-history">
+                <table>
+                  <tr class="head">
+                    <th width="44%" colspan="5">
+                      <span>历史最高-${ele.jzRateType}</span>
+                    </th>
+                    <th width="40%" colspan="3">
+                      <span>历史最高-${ele.hgRateType}</span>
+                    </th>
+                    <th width="16%" colspan="1">历史最高-利润</th>
+                  </tr>
+                  <tr>
+                    <td class="bold" width="8%">进球数</td>
+                    <td width="10%">0球</td>
+                    <td width="10%">1球</td>
+                    <td width="10%">2球</td>
+                    <td width="10%">3球</td>
+                    <td width="12%">大球</td>
+                    <td width="12%">盘口</td>
+                    <td width="12%">小球</td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td class="bold">赔  率</td>
+                    <td class="${ele.hisTopTtg.jzS0Highlight?'red':''}">${ele.hisTopTtg.jzS0Rate}</td>
+                    <td class="${ele.hisTopTtg.jzS1Highlight?'red':''}">${ele.hisTopTtg.jzS1Rate}</td>
+                    <td class="${ele.hisTopTtg.jzS2Highlight?'red':''}">${ele.hisTopTtg.jzS2Rate}</td>
+                    <td class="${ele.hisTopTtg.jzS3Highlight?'red':''}">${ele.hisTopTtg.jzS3Rate}</td>
+                    <td class="trend ${ele.hisTopTtg.changeHgWRate&&(ele.hisTopTtg.changeHgWRate>0?'trend-up':'trend-down')} ${ele.hisTopTtg.hgWHighlight?'red':''}">${ele.hisTopTtg.hgWRate}</td>
+                    <td class="${''}">${ele.hisTopTtg.hgPDisplay == ''? ele.hisTopTtg.hgPValue : ele.hisTopTtg.hgPDisplay}</td>
+                    <td class="trend ${ele.hisTopTtg.changeHgLRate&&(ele.hisTopTtg.changeHgLRate>0?'trend-up':'trend-down')} ${ele.hisTopTtg.hgLHighlight?'red':''}">${ele.hisTopTtg.hgLRate}</td>
+                    <td class="${tdClass_totalBenefitPoint}">${ele.hisTopTtg.totalBenefitPoint||''}</td>
+                  </tr>
+                  <tr>
+                    <td class="bold">投  注</td>
+                    <td class="bold">${ele.hisTopTtg.jzS0PayAmount>0? ele.hisTopTtg.jzS0PayAmount:''}</td>
+                    <td class="bold">${ele.hisTopTtg.jzS1PayAmount>0? ele.hisTopTtg.jzS1PayAmount:''}</td>
+                    <td class="bold">${ele.hisTopTtg.jzS2PayAmount>0? ele.hisTopTtg.jzS2PayAmount:''}</td>
+                    <td class="bold">${ele.hisTopTtg.jzS3PayAmount>0? ele.hisTopTtg.jzS3PayAmount:''}</td>
+                    <td class="bold">${ele.hisTopTtg.hgWPayAmount>0? ele.hisTopTtg.hgWPayAmount:''}</td>
+                    <td class="bold"></td>
+                    <td class="bold"></td>
+                    <td class="bold">${ele.hisTopTtg.totalBenefitAmount!=0? ele.hisTopTtg.totalBenefitAmount : ''}</td>
+                  </tr>
+                  <tr>
+                  <td class="bold">中  奖</td>
+                    <td class="gray trend ${ele.hisTopTtg.changeJzS0Rate&&(ele.hisTopTtg.changeJzS0Rate>0?'trend-up':'trend-down')}">${ele.hisTopTtg.jzS0BenefitAmount > 0 ? ele.hisTopTtg.jzS0BenefitAmount : ''}</td>
+                    <td class="gray trend ${ele.hisTopTtg.changeJzS1Rate&&(ele.hisTopTtg.changeJzS1Rate>0?'trend-up':'trend-down')}">${ele.hisTopTtg.jzS1BenefitAmount > 0 ? ele.hisTopTtg.jzS1BenefitAmount : ''}</td>
+                    <td class="gray trend ${ele.hisTopTtg.changeJzS2Rate&&(ele.hisTopTtg.changeJzS2Rate>0?'trend-up':'trend-down')}">${ele.hisTopTtg.jzS2BenefitAmount > 0 ? ele.hisTopTtg.jzS2BenefitAmount : ''}</td>
+                    <td class="gray trend ${ele.hisTopTtg.changeJzS3Rate&&(ele.hisTopTtg.changeJzS3Rate>0?'trend-up':'trend-down')}">${ele.hisTopTtg.jzS3BenefitAmount > 0 ? ele.hisTopTtg.jzS3BenefitAmount : ''}</td>
+                    <td class="gray">${ele.hisTopTtg.hgWBenefitAmount > 0 ? ele.hisTopTtg.hgWBenefitAmount : ''}</td>
+                    <td class="gray"></td>
+                    <td class="gray"></td>
+                    <td class="gray"></td>
+                  </tr>
+                </table>
+              </div>
+          `;
+          nodeStr_ttg += nodeStr_ttg_main + nodeStr_ttg_history + `</div>`;
         }
 
       })
@@ -427,6 +487,7 @@
 
     /* 方法：获取数据 */
     function getData(bet_params) {
+      getData_file()
       changeBlockBetStatus({ // 修改比赛投注状态
         optType: 0,
         hiddenCalcIds: []

@@ -487,7 +487,6 @@
 
     /* 方法：获取数据 */
     function getData(bet_params) {
-      getData_file()
       changeBlockBetStatus({ // 修改比赛投注状态
         optType: 0,
         hiddenCalcIds: []

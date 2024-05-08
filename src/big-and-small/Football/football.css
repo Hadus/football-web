@@ -175,6 +175,14 @@ body {
   border: 1px solid #dddddd;
 }
 
+.block table tr.head th span.his-update-time {
+  float: right;
+  margin-right: 20px;
+  /* color: #000; */
+  font-weight: normal;
+  font-size: 11px;
+}
+
 .block table tr td {
   background: url("../Lib/images/td.png") repeat-x left top;
 }

@@ -266,6 +266,7 @@
                   <tr class="head">
                     <th width="62%" colspan="9">
                       <span>${ele.jzRateType}</span>
+                      <span class="his-update-time">更新时间：${ele.hisTopTtg.updateTime}</span>
                     </th>
                     <th width="30%" colspan="3">
                       <span>${ele.hgRateType}</span>

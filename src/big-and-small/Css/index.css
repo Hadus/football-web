@@ -295,3 +295,7 @@ button.disabled {
   transition-duration: 0.2s;
   transform: translate(34px, 0px);
 }
+
+.hide {
+  display: none;
+}

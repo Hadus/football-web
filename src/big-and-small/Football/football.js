@@ -187,23 +187,27 @@
               <div class="bot">
                 <table>
                   <tr class="head">
-                    <th width="44%" colspan="5">
+                    <th width="62%" colspan="9">
                       <span>${ele.jzRateType}</span>
                     </th>
-                    <th width="40%" colspan="3">
+                    <th width="30%" colspan="3">
                       <span>${ele.hgRateType}</span>
                     </th>
-                    <th width="16%" colspan="1">利润</th>
+                    <th width="8%" colspan="1">利润</th>
                   </tr>
                   <tr>
-                    <td class="bold" width="8%">进球数</td>
-                    <td width="10%">0球</td>
-                    <td width="10%">1球</td>
-                    <td width="10%">2球</td>
-                    <td width="10%">3球</td>
-                    <td width="12%">大球</td>
-                    <td width="12%">盘口</td>
-                    <td width="12%">小球</td>
+                    <td class="bold" width="6%">进球数</td>
+                    <td width="7%">0球</td>
+                    <td width="7%">1球</td>
+                    <td width="7%">2球</td>
+                    <td width="7%">3球</td>
+                    <td width="7%">4球</td>
+                    <td width="7%">5球</td>
+                    <td width="7%">6球</td>
+                    <td width="7%">7球</td>
+                    <td width="10%">大球</td>
+                    <td width="10%">盘口</td>
+                    <td width="10%">小球</td>
                     <td></td>
                   </tr>
                   <tr>
@@ -212,6 +216,10 @@
                     <td class="${ele.jzS1Highlight?'red':''}">${ele.jzS1Rate}</td>
                     <td class="${ele.jzS2Highlight?'red':''}">${ele.jzS2Rate}</td>
                     <td class="${ele.jzS3Highlight?'red':''}">${ele.jzS3Rate}</td>
+                    <td class="${ele.jzS4Highlight?'red':''}">${ele.jzS4Rate}</td>
+                    <td class="${ele.jzS5Highlight?'red':''}">${ele.jzS5Rate}</td>
+                    <td class="${ele.jzS6Highlight?'red':''}">${ele.jzS6Rate}</td>
+                    <td class="${ele.jzS7Highlight?'red':''}">${ele.jzS7Rate}</td>
                     <td class="trend ${ele.changeHgWRate&&(ele.changeHgWRate>0?'trend-up':'trend-down')} ${ele.hgWHighlight?'red':''}">${ele.hgWRate}</td>
                     <td class="${''}">${ele.hgPDisplay == ''? ele.hgPValue : ele.hgPDisplay}</td>
                     <td class="trend ${ele.changeHgLRate&&(ele.changeHgLRate>0?'trend-up':'trend-down')} ${ele.hgLHighlight?'red':''}">${ele.hgLRate}</td>
@@ -223,6 +231,10 @@
                     <td class="bold">${ele.jzS1PayAmount>0? ele.jzS1PayAmount:''}</td>
                     <td class="bold">${ele.jzS2PayAmount>0? ele.jzS2PayAmount:''}</td>
                     <td class="bold">${ele.jzS3PayAmount>0? ele.jzS3PayAmount:''}</td>
+                    <td class="bold">${ele.jzS4PayAmount>0? ele.jzS4PayAmount:''}</td>
+                    <td class="bold">${ele.jzS5PayAmount>0? ele.jzS5PayAmount:''}</td>
+                    <td class="bold">${ele.jzS6PayAmount>0? ele.jzS6PayAmount:''}</td>
+                    <td class="bold">${ele.jzS7PayAmount>0? ele.jzS7PayAmount:''}</td>
                     <td class="bold">${ele.hgWPayAmount>0? ele.hgWPayAmount:''}</td>
                     <td class="bold"></td>
                     <td class="bold"></td>
@@ -234,6 +246,10 @@
                     <td class="gray trend ${ele.changeJzS1Rate&&(ele.changeJzS1Rate>0?'trend-up':'trend-down')}">${ele.jzS1BenefitAmount > 0 ? ele.jzS1BenefitAmount : ''}</td>
                     <td class="gray trend ${ele.changeJzS2Rate&&(ele.changeJzS2Rate>0?'trend-up':'trend-down')}">${ele.jzS2BenefitAmount > 0 ? ele.jzS2BenefitAmount : ''}</td>
                     <td class="gray trend ${ele.changeJzS3Rate&&(ele.changeJzS3Rate>0?'trend-up':'trend-down')}">${ele.jzS3BenefitAmount > 0 ? ele.jzS3BenefitAmount : ''}</td>
+                    <td class="gray trend ${ele.changeJzS4Rate&&(ele.changeJzS4Rate>0?'trend-up':'trend-down')}">${ele.jzS4BenefitAmount > 0 ? ele.jzS4BenefitAmount : ''}</td>
+                    <td class="gray trend ${ele.changeJzS5Rate&&(ele.changeJzS5Rate>0?'trend-up':'trend-down')}">${ele.jzS5BenefitAmount > 0 ? ele.jzS5BenefitAmount : ''}</td>
+                    <td class="gray trend ${ele.changeJzS6Rate&&(ele.changeJzS6Rate>0?'trend-up':'trend-down')}">${ele.jzS6BenefitAmount > 0 ? ele.jzS6BenefitAmount : ''}</td>
+                    <td class="gray trend ${ele.changeJzS7Rate&&(ele.changeJzS7Rate>0?'trend-up':'trend-down')}">${ele.jzS7BenefitAmount > 0 ? ele.jzS7BenefitAmount : ''}</td>
                     <td class="gray">${ele.hgWBenefitAmount > 0 ? ele.hgWBenefitAmount : ''}</td>
                     <td class="gray"></td>
                     <td class="gray"></td>
@@ -248,23 +264,27 @@
             <div class="bot bot-history">
                 <table>
                   <tr class="head">
-                    <th width="44%" colspan="5">
-                      <span>历史最高-${ele.jzRateType}</span>
+                    <th width="62%" colspan="9">
+                      <span>${ele.jzRateType}</span>
                     </th>
-                    <th width="40%" colspan="3">
-                      <span>历史最高-${ele.hgRateType}</span>
+                    <th width="30%" colspan="3">
+                      <span>${ele.hgRateType}</span>
                     </th>
-                    <th width="16%" colspan="1">历史最高-利润</th>
+                    <th width="8%" colspan="1">利润</th>
                   </tr>
                   <tr>
-                    <td class="bold" width="8%">进球数</td>
-                    <td width="10%">0球</td>
-                    <td width="10%">1球</td>
-                    <td width="10%">2球</td>
-                    <td width="10%">3球</td>
-                    <td width="12%">大球</td>
-                    <td width="12%">盘口</td>
-                    <td width="12%">小球</td>
+                    <td class="bold" width="6%">进球数</td>
+                    <td width="7%">0球</td>
+                    <td width="7%">1球</td>
+                    <td width="7%">2球</td>
+                    <td width="7%">3球</td>
+                    <td width="7%">4球</td>
+                    <td width="7%">5球</td>
+                    <td width="7%">6球</td>
+                    <td width="7%">7球</td>
+                    <td width="10%">大球</td>
+                    <td width="10%">盘口</td>
+                    <td width="10%">小球</td>
                     <td></td>
                   </tr>
                   <tr>
@@ -273,6 +293,10 @@
                     <td class="${ele.hisTopTtg.jzS1Highlight?'red':''}">${ele.hisTopTtg.jzS1Rate}</td>
                     <td class="${ele.hisTopTtg.jzS2Highlight?'red':''}">${ele.hisTopTtg.jzS2Rate}</td>
                     <td class="${ele.hisTopTtg.jzS3Highlight?'red':''}">${ele.hisTopTtg.jzS3Rate}</td>
+                    <td class="${ele.hisTopTtg.jzS4Highlight?'red':''}">${ele.hisTopTtg.jzS4Rate}</td>
+                    <td class="${ele.hisTopTtg.jzS5Highlight?'red':''}">${ele.hisTopTtg.jzS5Rate}</td>
+                    <td class="${ele.hisTopTtg.jzS6Highlight?'red':''}">${ele.hisTopTtg.jzS6Rate}</td>
+                    <td class="${ele.hisTopTtg.jzS7Highlight?'red':''}">${ele.hisTopTtg.jzS7Rate}</td>
                     <td class="trend ${ele.hisTopTtg.changeHgWRate&&(ele.hisTopTtg.changeHgWRate>0?'trend-up':'trend-down')} ${ele.hisTopTtg.hgWHighlight?'red':''}">${ele.hisTopTtg.hgWRate}</td>
                     <td class="${''}">${ele.hisTopTtg.hgPDisplay == ''? ele.hisTopTtg.hgPValue : ele.hisTopTtg.hgPDisplay}</td>
                     <td class="trend ${ele.hisTopTtg.changeHgLRate&&(ele.hisTopTtg.changeHgLRate>0?'trend-up':'trend-down')} ${ele.hisTopTtg.hgLHighlight?'red':''}">${ele.hisTopTtg.hgLRate}</td>
@@ -284,6 +308,10 @@
                     <td class="bold">${ele.hisTopTtg.jzS1PayAmount>0? ele.hisTopTtg.jzS1PayAmount:''}</td>
                     <td class="bold">${ele.hisTopTtg.jzS2PayAmount>0? ele.hisTopTtg.jzS2PayAmount:''}</td>
                     <td class="bold">${ele.hisTopTtg.jzS3PayAmount>0? ele.hisTopTtg.jzS3PayAmount:''}</td>
+                    <td class="bold">${ele.hisTopTtg.jzS4PayAmount>0? ele.hisTopTtg.jzS4PayAmount:''}</td>
+                    <td class="bold">${ele.hisTopTtg.jzS5PayAmount>0? ele.hisTopTtg.jzS5PayAmount:''}</td>
+                    <td class="bold">${ele.hisTopTtg.jzS6PayAmount>0? ele.hisTopTtg.jzS6PayAmount:''}</td>
+                    <td class="bold">${ele.hisTopTtg.jzS7PayAmount>0? ele.hisTopTtg.jzS7PayAmount:''}</td>
                     <td class="bold">${ele.hisTopTtg.hgWPayAmount>0? ele.hisTopTtg.hgWPayAmount:''}</td>
                     <td class="bold"></td>
                     <td class="bold"></td>
@@ -295,6 +323,10 @@
                     <td class="gray trend ${ele.hisTopTtg.changeJzS1Rate&&(ele.hisTopTtg.changeJzS1Rate>0?'trend-up':'trend-down')}">${ele.hisTopTtg.jzS1BenefitAmount > 0 ? ele.hisTopTtg.jzS1BenefitAmount : ''}</td>
                     <td class="gray trend ${ele.hisTopTtg.changeJzS2Rate&&(ele.hisTopTtg.changeJzS2Rate>0?'trend-up':'trend-down')}">${ele.hisTopTtg.jzS2BenefitAmount > 0 ? ele.hisTopTtg.jzS2BenefitAmount : ''}</td>
                     <td class="gray trend ${ele.hisTopTtg.changeJzS3Rate&&(ele.hisTopTtg.changeJzS3Rate>0?'trend-up':'trend-down')}">${ele.hisTopTtg.jzS3BenefitAmount > 0 ? ele.hisTopTtg.jzS3BenefitAmount : ''}</td>
+                    <td class="gray trend ${ele.hisTopTtg.changeJzS4Rate&&(ele.hisTopTtg.changeJzS4Rate>0?'trend-up':'trend-down')}">${ele.hisTopTtg.jzS4BenefitAmount > 0 ? ele.hisTopTtg.jzS4BenefitAmount : ''}</td>
+                    <td class="gray trend ${ele.hisTopTtg.changeJzS5Rate&&(ele.hisTopTtg.changeJzS5Rate>0?'trend-up':'trend-down')}">${ele.hisTopTtg.jzS5BenefitAmount > 0 ? ele.hisTopTtg.jzS5BenefitAmount : ''}</td>
+                    <td class="gray trend ${ele.hisTopTtg.changeJzS6Rate&&(ele.hisTopTtg.changeJzS6Rate>0?'trend-up':'trend-down')}">${ele.hisTopTtg.jzS6BenefitAmount > 0 ? ele.hisTopTtg.jzS6BenefitAmount : ''}</td>
+                    <td class="gray trend ${ele.hisTopTtg.changeJzS7Rate&&(ele.hisTopTtg.changeJzS7Rate>0?'trend-up':'trend-down')}">${ele.hisTopTtg.jzS7BenefitAmount > 0 ? ele.hisTopTtg.jzS7BenefitAmount : ''}</td>
                     <td class="gray">${ele.hisTopTtg.hgWBenefitAmount > 0 ? ele.hisTopTtg.hgWBenefitAmount : ''}</td>
                     <td class="gray"></td>
                     <td class="gray"></td>
@@ -854,6 +886,10 @@
             s1: inputValueList.jzS1Rate,
             s2: inputValueList.jzS2Rate,
             s3: inputValueList.jzS3Rate,
+            s4: inputValueList.jzS4Rate,
+            s5: inputValueList.jzS5Rate,
+            s6: inputValueList.jzS6Rate,
+            s7: inputValueList.jzS7Rate,
           }
         };
       }
@@ -1008,23 +1044,27 @@
               <div class="bot">
                 <table>
                   <tr class="head">
-                    <th width="44%" colspan="5">
+                    <th width="62%" colspan="9">
                       <span>${ele.jzRateType}</span>
                     </th>
-                    <th width="40%" colspan="3">
+                    <th width="30%" colspan="3">
                       <span>${ele.hgRateType}</span>
                     </th>
-                    <th width="16%" colspan="1">利润</th>
+                    <th width="8%" colspan="1">利润</th>
                   </tr>
                   <tr>
-                    <td class="bold" width="8%">进球数</td>
-                    <td width="10%">0球</td>
-                    <td width="10%">1球</td>
-                    <td width="10%">2球</td>
-                    <td width="10%">3球</td>
-                    <td width="12%">大球</td>
-                    <td width="12%">盘口</td>
-                    <td width="12%">小球</td>
+                    <td class="bold" width="6%">进球数</td>
+                    <td width="7%">0球</td>
+                    <td width="7%">1球</td>
+                    <td width="7%">2球</td>
+                    <td width="7%">3球</td>
+                    <td width="7%">4球</td>
+                    <td width="7%">5球</td>
+                    <td width="7%">6球</td>
+                    <td width="7%">7球</td>
+                    <td width="10%">大球</td>
+                    <td width="10%">盘口</td>
+                    <td width="10%">小球</td>
                     <td></td>
                   </tr>
                   <tr>
@@ -1040,6 +1080,18 @@
                     </td>
                     <td>
                       <input type="number" data-input-key="jzS3Rate" value=${ele.jzS3Rate||''}>
+                    </td>
+                    <td>
+                      <input type="number" data-input-key="jzS4Rate" value=${ele.jzS4Rate||''}>
+                    </td>
+                    <td>
+                      <input type="number" data-input-key="jzS5Rate" value=${ele.jzS5Rate||''}>
+                    </td>
+                    <td>
+                      <input type="number" data-input-key="jzS6Rate" value=${ele.jzS6Rate||''}>
+                    </td>
+                    <td>
+                      <input type="number" data-input-key="jzS7Rate" value=${ele.jzS7Rate||''}>
                     </td>
                     <td>
                       <input type="number" data-input-key="hgWRate" value=${ele.hgWRate||''}>
@@ -1069,6 +1121,18 @@
                       <input type="number" data-output-key="jzS3PayAmount" disabled value=${ele.jzS3PayAmount>0? ele.jzS3PayAmount:''}>
                     </td>
                     <td class="bold">
+                      <input type="number" data-output-key="jzS4PayAmount" disabled value=${ele.jzS4PayAmount>0? ele.jzS4PayAmount:''}>
+                    </td>
+                    <td class="bold">
+                      <input type="number" data-output-key="jzS5PayAmount" disabled value=${ele.jzS5PayAmount>0? ele.jzS5PayAmount:''}>
+                    </td>
+                    <td class="bold">
+                      <input type="number" data-output-key="jzS6PayAmount" disabled value=${ele.jzS6PayAmount>0? ele.jzS6PayAmount:''}>
+                    </td>
+                    <td class="bold">
+                      <input type="number" data-output-key="jzS7PayAmount" disabled value=${ele.jzS7PayAmount>0? ele.jzS7PayAmount:''}>
+                    </td>
+                    <td class="bold">
                       <input type="number" data-output-key="hgWPayAmount" disabled value=${ele.hgWPayAmount>0? ele.hgWPayAmount:''}>
                     </td>
                     <td class="bold"></td>
@@ -1090,6 +1154,18 @@
                     </td>
                     <td class="gray">
                       <input type="number" data-output-key="jzS3BenefitAmount" disabled value=${ele.jzS3BenefitAmount > 0 ? ele.jzS3BenefitAmount : ''}>
+                    </td>
+                    <td class="gray">
+                      <input type="number" data-output-key="jzS4BenefitAmount" disabled value=${ele.jzS4BenefitAmount > 0 ? ele.jzS4BenefitAmount : ''}>
+                    </td>
+                    <td class="gray">
+                      <input type="number" data-output-key="jzS5BenefitAmount" disabled value=${ele.jzS5BenefitAmount > 0 ? ele.jzS5BenefitAmount : ''}>
+                    </td>
+                    <td class="gray">
+                      <input type="number" data-output-key="jzS6BenefitAmount" disabled value=${ele.jzS6BenefitAmount > 0 ? ele.jzS6BenefitAmount : ''}>
+                    </td>
+                    <td class="gray">
+                      <input type="number" data-output-key="jzS7BenefitAmount" disabled value=${ele.jzS7BenefitAmount > 0 ? ele.jzS7BenefitAmount : ''}>
                     </td>
                     <td class="gray">
                       <input type="text" data-output-key="hgWBenefitAmount" disabled value=${ele.hgWBenefitAmount > 0 ? ele.hgWBenefitAmount : ''}>

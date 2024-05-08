@@ -237,7 +237,7 @@
                     <td class="bold">${ele.jzS7PayAmount>0? ele.jzS7PayAmount:''}</td>
                     <td class="bold">${ele.hgWPayAmount>0? ele.hgWPayAmount:''}</td>
                     <td class="bold"></td>
-                    <td class="bold"></td>
+                    <td class="bold">a${ele.hgLPayAmount!=0? ele.hgLPayAmount : ''}</td>
                     <td class="bold">${ele.totalBenefitAmount!=0? ele.totalBenefitAmount : ''}</td>
                   </tr>
                   <tr>
@@ -252,7 +252,7 @@
                     <td class="gray trend ${ele.changeJzS7Rate&&(ele.changeJzS7Rate>0?'trend-up':'trend-down')}">${ele.jzS7BenefitAmount > 0 ? ele.jzS7BenefitAmount : ''}</td>
                     <td class="gray">${ele.hgWBenefitAmount > 0 ? ele.hgWBenefitAmount : ''}</td>
                     <td class="gray"></td>
-                    <td class="gray"></td>
+                    <td class="gray">a${ele.hgLBenefitAmount > 0? ele.hgLBenefitAmount : ''}</td>
                     <td class="gray"></td>
                   </tr>
                 </table>

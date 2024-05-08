@@ -237,7 +237,7 @@
                     <td class="bold">${ele.jzS7PayAmount>0? ele.jzS7PayAmount:''}</td>
                     <td class="bold">${ele.hgWPayAmount>0? ele.hgWPayAmount:''}</td>
                     <td class="bold"></td>
-                    <td class="bold">a${ele.hgLPayAmount!=0? ele.hgLPayAmount : ''}</td>
+                    <td class="bold">${ele.hgLPayAmount!=0? ele.hgLPayAmount : ''}</td>
                     <td class="bold">${ele.totalBenefitAmount!=0? ele.totalBenefitAmount : ''}</td>
                   </tr>
                   <tr>
@@ -252,7 +252,7 @@
                     <td class="gray trend ${ele.changeJzS7Rate&&(ele.changeJzS7Rate>0?'trend-up':'trend-down')}">${ele.jzS7BenefitAmount > 0 ? ele.jzS7BenefitAmount : ''}</td>
                     <td class="gray">${ele.hgWBenefitAmount > 0 ? ele.hgWBenefitAmount : ''}</td>
                     <td class="gray"></td>
-                    <td class="gray">a${ele.hgLBenefitAmount > 0? ele.hgLBenefitAmount : ''}</td>
+                    <td class="gray">${ele.hgLBenefitAmount > 0? ele.hgLBenefitAmount : ''}</td>
                     <td class="gray"></td>
                   </tr>
                 </table>
@@ -315,7 +315,7 @@
                     <td class="bold">${ele.hisTopTtg.jzS7PayAmount>0? ele.hisTopTtg.jzS7PayAmount:''}</td>
                     <td class="bold">${ele.hisTopTtg.hgWPayAmount>0? ele.hisTopTtg.hgWPayAmount:''}</td>
                     <td class="bold"></td>
-                    <td class="bold"></td>
+                    <td class="bold">${ele.hisTopTtg.hgLPayAmount!=0? ele.hisTopTtg.hgLPayAmount : ''}</td>
                     <td class="bold">${ele.hisTopTtg.totalBenefitAmount!=0? ele.hisTopTtg.totalBenefitAmount : ''}</td>
                   </tr>
                   <tr>
@@ -330,7 +330,7 @@
                     <td class="gray trend ${ele.hisTopTtg.changeJzS7Rate&&(ele.hisTopTtg.changeJzS7Rate>0?'trend-up':'trend-down')}">${ele.hisTopTtg.jzS7BenefitAmount > 0 ? ele.hisTopTtg.jzS7BenefitAmount : ''}</td>
                     <td class="gray">${ele.hisTopTtg.hgWBenefitAmount > 0 ? ele.hisTopTtg.hgWBenefitAmount : ''}</td>
                     <td class="gray"></td>
-                    <td class="gray"></td>
+                    <td class="gray">${ele.hisTopTtg.hgLBenefitAmount > 0? ele.hisTopTtg.hgLBenefitAmount : ''}</td>
                     <td class="gray"></td>
                   </tr>
                 </table>
@@ -1137,7 +1137,9 @@
                       <input type="number" data-output-key="hgWPayAmount" disabled value=${ele.hgWPayAmount>0? ele.hgWPayAmount:''}>
                     </td>
                     <td class="bold"></td>
-                    <td class="bold"></td>
+                    <td class="bold">
+                      <input type="number" data-output-key="hgLPayAmount" disabled value=${ele.hgLPayAmount!=0? ele.hgLPayAmount : ''}>
+                    </td>
                     <td class="bold">
                       <input type="number" data-output-key="totalBenefitAmount" disabled value=${ele.totalBenefitAmount!=0? ele.totalBenefitAmount : ''}>
                     </td>
@@ -1172,7 +1174,9 @@
                       <input type="text" data-output-key="hgWBenefitAmount" disabled value=${ele.hgWBenefitAmount > 0 ? ele.hgWBenefitAmount : ''}>
                     </td>
                     <td class="gray"></td>
-                    <td class="gray"></td>
+                    <td class="gray">
+                      <input type="text" data-output-key="hgLBenefitAmount" disabled value=${ele.hgLBenefitAmount > 0 ? ele.hgLBenefitAmount : ''}>
+                    </td>
                     <td class="gray"></td>
                   </tr>
                 </table>

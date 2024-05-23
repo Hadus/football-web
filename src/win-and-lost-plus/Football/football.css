@@ -1,0 +1,329 @@
+body {
+  font-size: 12px;
+}
+
+.bet {
+  height: 40px;
+  font-size: 14px;
+  border-bottom: 1px solid #eee;
+}
+
+.bet>ul {
+  width: 100%;
+  display: flex;
+}
+
+.bet>ul>li {
+  flex: 2;
+}
+
+.bet>ul>li:last-child {
+  flex: 1;
+  text-align: right;
+}
+
+.list {
+  height: 600px;
+}
+
+.list>.filter {
+  height: 40px;
+  line-height: 38px;
+  border-bottom: 1px solid #eee;
+}
+
+.list>.filter>ul {
+  width: 100%;
+}
+
+.list>.filter>ul>li {
+  display: inline-block;
+  min-width: 120px;
+  margin-right: 5px;
+}
+
+.list>.table {
+  display: none;
+}
+
+.list>.table.show {
+  display: block;
+}
+
+.list>.table>p.no-data {
+  text-align: center;
+  height: 400px;
+  line-height: 400px;
+  font-size: 40px;
+  font-weight: 500;
+  opacity: .5;
+  color: #666;
+}
+
+.block {
+  min-height: 165px;
+  height: auto;
+  border: 1px solid #eee;
+  padding: 15px 30px 10px 30px;
+  box-shadow: 1px 1px 1px 1px #eee;
+  margin-bottom: 2px;
+}
+
+.block:hover {
+  box-shadow: 2px 2px 2px 2px #ddd;
+}
+
+.block>.top {
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  padding: 0 6px;
+  position: relative;
+  top: 3px;
+}
+
+.block>.top>div {
+  float: left;
+}
+
+.block>.top>div.competitionType {
+  height: 30px;
+  width: 100px;
+  line-height: 30px;
+  background-color: #4579c3;
+  color: #fff;
+  text-align: center;
+  padding: 0 10px;
+  margin-right: 24px;
+  position: relative;
+}
+
+.block>.top>div.competitionType>span {
+  height: 0;
+  width: 0;
+  position: absolute;
+  right: -30px;
+  top: 0px;
+  z-index: 1;
+  width: 0;
+  height: 0;
+  border-bottom: 30px solid #4579c3;
+  border-right: 30px solid transparent;
+}
+
+.block>.top>div.level {
+  min-width: 150px;
+  width: auto;
+  color: #0259b2;
+  margin-left: 10px;
+}
+
+.block>.top>div.teams {
+  color: #3c7db8;
+  font-size: 14px;
+  font-weight: bold;
+  width: 55%;
+  text-align: center;
+}
+
+.block>.top>div.teams>.icon-vs {
+  display: inline-block;
+  width: 22px;
+  height: 22px;
+  background: url("../Lib/images/icon-vs.png") repeat-x left top;
+  margin: 0 3px;
+}
+
+.block>.top>div.is-bet {
+  float: right;
+}
+
+.block>.top>div.calculator {
+  float: right;
+  margin-left: 20px;
+}
+
+.block table {
+  width: 100%;
+  line-height: 28px;
+  font-size: 12px;
+  text-align: center;
+  border-spacing: 5px;
+}
+
+.block table>tbody {
+  width: 100%;
+}
+
+.block table tr {
+  width: 100%;
+  line-height: 28px;
+}
+
+.block table tr.head {
+  background-color: #5484d0;
+  color: #ffffff;
+  font-weight: 400;
+}
+
+.block table tr.head th {
+  border: 1px solid #dddddd;
+}
+
+.block table tr td {
+  background: url("../Lib/images/td.png") repeat-x left top;
+}
+
+.block table tr td.red {
+  color: #ff0102;
+}
+
+.block table tr td.green {
+  color: #57A87B;
+}
+
+.block table tr td.yellow {
+  color: #ffaf01;
+}
+
+.block table tr td.gray {
+  color: #5D7092;
+}
+
+.block table tr td.bold {
+  font-weight: bold;
+}
+
+.block table tr td.v-hide {
+  visibility: hidden;
+}
+
+.trend::before {
+  content: "";
+  width: 0;
+  display: inline-block;
+  margin-right: 1px;
+  margin-bottom: -3px;
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  background-size: cover;
+}
+
+.trend.trend-up::before {
+  width: 18px;
+  height: 18px;
+  background-image: url("../Lib/images/up-bold.png");
+}
+
+.trend.trend-down::before {
+  width: 18px;
+  height: 18px;
+  background-image: url("../Lib/images/down-bold.png");
+  margin-bottom: -4px;
+}
+
+.tips::after {
+  content: "";
+  width: 0px;
+  height: 0px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-left: 5px;
+  margin-bottom: -1px;
+}
+
+.tips.red::after {
+  width: 10px;
+  height: 10px;
+  background: #ff0102;
+}
+
+.tips.yellow::after {
+  width: 10px;
+  height: 10px;
+  background: #ffaf01;
+}
+
+.tips.flash::after {
+  animation: blockAlert 1.5s;
+  animation-iteration-count: infinite;
+  animation-direction: normal;
+  animation-play-state: running;
+}
+
+@keyframes blockAlert {
+  0% {
+    background-color: pink;
+  }
+
+  100% {
+    background-color: #ff0102;
+  }
+}
+
+.audio_select {
+  float: right;
+  color: #f56c6c;
+  font-weight: 600;
+}
+
+.tabs {
+  height: 40px;
+  font-size: 14px;
+  line-height: 38px;
+  position: relative;
+  display: none;
+}
+
+.tabs>.tab-bar {
+  height: 100%;
+  width: 100%;
+}
+
+.tabs>.tab-bar>ul {
+  height: 100%;
+}
+
+.tabs>.tab-bar>ul>li {
+  display: inline-block;
+  min-width: 80px;
+  height: 100%;
+  cursor: pointer;
+  border: 1px solid #ccc;
+  border-bottom: none;
+  text-align: center;
+  margin-bottom: 0;
+
+}
+
+.tabs>.tab-bar>ul>li.active {
+  background: #fff;
+  color: #409eff;
+  position: relative;
+}
+
+.tabs>.tab-bar>ul>li.active::before {
+  content: '';
+  width: 100%;
+  height: 1px;
+  background: #fff;
+  position: absolute;
+  bottom: -1px;
+  left: 0px;
+  z-index: 9;
+}
+
+.tabs>.force-refresh {
+  width: auto;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.dialog-box .block input {
+  width: 80%;
+}
+
+.dialog-box .block input.small {
+  width: 70px;
+}

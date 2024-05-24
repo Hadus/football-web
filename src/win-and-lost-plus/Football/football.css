@@ -166,6 +166,10 @@ body {
   font-weight: 400;
 }
 
+.block .bot-history table tr.head {
+  background-color: #9ed4a0;
+}
+
 .block table tr.head th {
   border: 1px solid #dddddd;
 }

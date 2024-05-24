@@ -1232,6 +1232,45 @@
                       <input type="number" data-output-key="totalBenefitAmount" disabled value=${ele.totalBenefitAmount!=0? ele.totalBenefitAmount : ''}>
                     </td>
                   </tr>
+                  <tr>
+                    <td class="hide-text"></td>
+                    <td class="bold">
+                      <input type="number" data-output-key="jzHhBenefitAmount" disabled value=${ele.jzHhBenefitAmount>0? ele.jzHhBenefitAmount : ''}>
+                    </td>
+                    <td class="bold">
+                      <input type="number" data-output-key="jzHdBenefitAmount" disabled value=${ele.jzHdBenefitAmount>0? ele.jzHdBenefitAmount : ''}>
+                    </td>
+                    <td class="bold">
+                      <input type="number" data-output-key="jzHaBenefitAmount" disabled value=${ele.jzHaBenefitAmount>0? ele.jzHaBenefitAmount : ''}>
+                    </td>
+                    <td class="bold">
+                      <input type="number" data-output-key="jzDhBenefitAmount" disabled value=${ele.jzDhBenefitAmount>0? ele.jzDhBenefitAmount : ''}>
+                    </td>
+                    <td class="bold">
+                      <input type="number" data-output-key="jzDdBenefitAmount" disabled value=${ele.jzDdBenefitAmount>0? ele.jzDdBenefitAmount : ''}>
+                    </td>
+                    <td class="bold">
+                      <input type="number" data-output-key="jzDaBenefitAmount" disabled value=${ele.jzDaBenefitAmount>0? ele.jzDaBenefitAmount : ''}>
+                    </td>
+                    <td class="bold">
+                      <input type="number" data-output-key="jzAhBenefitAmount" disabled value=${ele.jzAhBenefitAmount>0? ele.jzAhBenefitAmount : ''}>
+                    </td>
+                    <td class="bold">
+                      <input type="number" data-output-key="jzAdBenefitAmount" disabled value=${ele.jzAdBenefitAmount>0? ele.jzAdBenefitAmount : ''}>
+                    </td>
+                    <td class="bold">
+                      <input type="number" data-output-key="jzAaBenefitAmount" disabled value=${ele.jzAaBenefitAmount>0? ele.jzAaBenefitAmount : ''}>
+                    </td>
+                    
+                    <td class="bold">
+                    </td>
+                    <td class="bold">
+                    </td>
+                    <td class="bold">
+                    </td>
+                    <td class="bold">
+                    </td>
+                  </tr>
                 </table>
               </div>
             </div>

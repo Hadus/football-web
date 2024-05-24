@@ -215,8 +215,8 @@
                   </tr>
                   <tr>
                     <td class="trend ${tdClass_jzPValue}">${ele.jzPValue > 0 ? "+" + ele.jzPValue : ele.jzPValue}</td>
-                    <td class="trend ${ele.changeJzHhRate&&(ele.changeJzHhRate>0?'trend-up':'trend-down')} ${ele.jzHhHighlight?'red':''}">${ele.jzHhRate}</td>
                     <td class="trend ${ele.changeJzHdRate&&(ele.changeJzHdRate>0?'trend-up':'trend-down')} ${ele.jzHdHighlight?'red':''}">${ele.jzHdRate}</td>
+                    <td class="trend ${ele.changeJzHhRate&&(ele.changeJzHhRate>0?'trend-up':'trend-down')} ${ele.jzHhHighlight?'red':''}">${ele.jzHhRate}</td>
                     <td class="trend ${ele.changeJzHaRate&&(ele.changeJzHaRate>0?'trend-down':'trend-up')} ${ele.jzHaHighlight?'red':''}">${ele.jzHaRate}</td>
                     <td class="trend ${ele.changeJzDhRate&&(ele.changeJzDhRate>0?'trend-up':'trend-down')} ${ele.jzDhHighlight?'red':''}">${ele.jzDhRate}</td>
                     <td class="trend ${ele.changeJzDdRate&&(ele.changeJzDdRate>0?'trend-up':'trend-down')} ${ele.jzDdHighlight?'red':''}">${ele.jzDdRate}</td>
@@ -232,15 +232,15 @@
                   </tr>
                   <tr>
                     <td class="hide"></td>
-                    <td class="bold">${ele.jzWPayAmount>0? ele.jzWPayAmount : ''}</td>
-                    <td class="bold">${ele.jzDPayAmount>0? ele.jzDPayAmount : ''}</td>
-                    <td class="bold">${ele.jzLPayAmount>0? ele.jzLPayAmount : ''}</td>
-                    <td class="bold">${ele.jzWPayAmount>0? ele.jzWPayAmount : ''}</td>
-                    <td class="bold">${ele.jzDPayAmount>0? ele.jzDPayAmount : ''}</td>
-                    <td class="bold">${ele.jzLPayAmount>0? ele.jzLPayAmount : ''}</td>
-                    <td class="bold">${ele.jzWPayAmount>0? ele.jzWPayAmount : ''}</td>
-                    <td class="bold">${ele.jzDPayAmount>0? ele.jzDPayAmount : ''}</td>
-                    <td class="bold">${ele.jzLPayAmount>0? ele.jzLPayAmount : ''}</td>
+                    <td class="bold">${ele.jzHdPayAmount>0? ele.jzHdPayAmount : ''}</td>
+                    <td class="bold">${ele.jzHhPayAmount>0? ele.jzHhPayAmount : ''}</td>
+                    <td class="bold">${ele.jzHaPayAmount>0? ele.jzHaPayAmount : ''}</td>
+                    <td class="bold">${ele.jzDhPayAmount>0? ele.jzDhPayAmount : ''}</td>
+                    <td class="bold">${ele.jzDdPayAmount>0? ele.jzDdPayAmount : ''}</td>
+                    <td class="bold">${ele.jzDaPayAmount>0? ele.jzDaPayAmount : ''}</td>
+                    <td class="bold">${ele.jzAhPayAmount>0? ele.jzAhPayAmount : ''}</td>
+                    <td class="bold">${ele.jzAdPayAmount>0? ele.jzAdPayAmount : ''}</td>
+                    <td class="bold">${ele.jzAaPayAmount>0? ele.jzAaPayAmount : ''}</td>
 
                     <td class="bold">${ele.hgWPayAmount>0? ele.hgWPayAmount : ''}</td>
                     <td class="bold">${ele.hgDPayAmount>0? ele.hgDPayAmount : ''}</td>
@@ -367,15 +367,15 @@
                 </tr>
                 <tr>
                   <td class="hide"></td>
-                  <td class="bold">${ele.jzWPayAmount>0? ele.jzWPayAmount : ''}</td>
-                  <td class="bold">${ele.jzDPayAmount>0? ele.jzDPayAmount : ''}</td>
-                  <td class="bold">${ele.jzLPayAmount>0? ele.jzLPayAmount : ''}</td>
-                  <td class="bold">${ele.jzWPayAmount>0? ele.jzWPayAmount : ''}</td>
-                  <td class="bold">${ele.jzDPayAmount>0? ele.jzDPayAmount : ''}</td>
-                  <td class="bold">${ele.jzLPayAmount>0? ele.jzLPayAmount : ''}</td>
-                  <td class="bold">${ele.jzWPayAmount>0? ele.jzWPayAmount : ''}</td>
-                  <td class="bold">${ele.jzDPayAmount>0? ele.jzDPayAmount : ''}</td>
-                  <td class="bold">${ele.jzLPayAmount>0? ele.jzLPayAmount : ''}</td>
+                  <td class="bold">${ele.jzHdPayAmount>0? ele.jzHdPayAmount : ''}</td>
+                  <td class="bold">${ele.jzHhPayAmount>0? ele.jzHhPayAmount : ''}</td>
+                  <td class="bold">${ele.jzHaPayAmount>0? ele.jzHaPayAmount : ''}</td>
+                  <td class="bold">${ele.jzDhPayAmount>0? ele.jzDhPayAmount : ''}</td>
+                  <td class="bold">${ele.jzDdPayAmount>0? ele.jzDdPayAmount : ''}</td>
+                  <td class="bold">${ele.jzDaPayAmount>0? ele.jzDaPayAmount : ''}</td>
+                  <td class="bold">${ele.jzAhPayAmount>0? ele.jzAhPayAmount : ''}</td>
+                  <td class="bold">${ele.jzAdPayAmount>0? ele.jzAdPayAmount : ''}</td>
+                  <td class="bold">${ele.jzAaPayAmount>0? ele.jzAaPayAmount : ''}</td>
 
                   <td class="bold">${ele.hgWPayAmount>0? ele.hgWPayAmount : ''}</td>
                   <td class="bold">${ele.hgDPayAmount>0? ele.hgDPayAmount : ''}</td>
@@ -1120,35 +1120,43 @@
               <div class="bot">
                 <table>
                   <tr class="head">
-                    <th width="44%" colspan="4">
+                    <th colspan="10">
                       <span>${ele.jzRateType}</span>
                     </th>
-                    <th width="40%" colspan="3">
+                    <th colspan="3">
                       <span>${ele.hgRateType}</span>
                     </th>
                     <th width="20%" colspan="1">利润</th>
                   </tr>
+                  <tr class="sec-head">
+                    <td width="3%" class="hide"></td>
+                    <td width="6%" class="bold">胜胜</td>
+                    <td width="6%" class="bold">胜平</td>
+                    <td width="6%" class="bold">胜负</td>
+                    <td width="6%" class="bold">平胜</td>
+                    <td width="6%" class="bold">平平</td>
+                    <td width="6%" class="bold">平负</td>
+                    <td width="6%" class="bold">负胜</td>
+                    <td width="6%" class="bold">负平</td>
+                    <td width="6%" class="bold">负负</td>
+
+                    <td width="10%" class="bold">胜</td>
+                    <td width="10%" class="bold">平</td>
+                    <td width="10%" class="bold">负</td>
+                    <td width="10%" class="bold"></td>
+                  </tr>
                   <tr>
-                    <td width="5%">
-                      <input type="text" disabled data-input-key="jzPValue" value=${ele.jzPValue > 0 ? "+" + ele.jzPValue : ele.jzPValue}>
-                    </td>
-                    <td width="10%">
-                      <input type="number" data-input-key="jzWRate" value=${ele.jzWRate||''}>
-                    </td>
-                    <td width="10%">
-                      <input type="number" data-input-key="jzDRate" value=${ele.jzDRate||''}>
-                    </td>
-                    <td width="10%">
-                      <input type="number" data-input-key="jzLRate" value=${ele.jzLRate||''}>
-                    </td>
-                    <td width="10%">
-                      <input type="number" data-input-key="hgWRate" value=${ele.hgWRate||''}>
-                    </td>
-                    <td width="18%">
+                    <td><input type="text" disabled data-input-key="jzPValue" value=${ele.jzPValue > 0 ? "+" + ele.jzPValue : ele.jzPValue}></td>
+                    <td><input type="number" data-input-key="jzWRate" value=${ele.jzWRate||''}></td>
+                    <td><input type="number" data-input-key="jzDRate" value=${ele.jzDRate||''}></td>
+                    <td><input type="number" data-input-key="jzLRate" value=${ele.jzLRate||''}></td>
+
+                    <td><input type="number" data-input-key="hgWRate" value=${ele.hgWRate||''}></td>
+                    <td>
                       <input type=${ele.hgPDisplay===''?'number':'text'}" ${ele.hgPDisplay===''?'':'disabled'} data-input-key="hgPValue" data-input-res=${ele.hgPDisplay===''?ele.hgDRate:ele.hgPValue} value="${ele.hgPDisplay===''?ele.hgDRate:ele.hgPDisplay}">
                       <input type="number" class="hide" disabled data-input-key="hgDRate" value=${ele.hgDRate}>
                     </td>
-                    <td width="18%">
+                    <td>
                       <output>${hgLRateFormat01}</output>
                       <input type="number" class="${hgLRateFormat01&&'small'}" data-input-key="hgLRate" value=${hgLRateFormat02||''}>
                     </td>
@@ -1167,6 +1175,7 @@
                     <td class="bold">
                       <input type="number" disabled value=${ele.jzLPayAmount>0? ele.jzLPayAmount : ''}>
                     </td>
+                    
                     <td class="bold">
                       <input type="number" data-output-key="hgWPayAmount" disabled value=${ele.hgWPayAmount>0? ele.hgWPayAmount : ''}>
                     </td>

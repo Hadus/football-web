@@ -287,3 +287,7 @@ div.s-drag div.header-box {
 .dialog-box>.content>div.change-pw p input {
   float: right;
 }
+
+.hide {
+  display: none;
+}

@@ -252,7 +252,73 @@
               <!-- lose </div> -->
           `;
           let nodeStr_index_history = '';
-          // if(ele.hisTopTtg) nodeStr_ttg_history = ` // 历史数据
+          if(ele.hisIndex) nodeStr_ttg_history = `
+          <div class="bot bot-history">
+            <table>
+              <tr class="head">
+                <th colspan="10">
+                  <span>${ele.hisIndex.jzRateType}</span>
+                </th>
+                <th colspan="3">
+                  <span>${ele.hisIndex.hgRateType}</span>
+                </th>
+                <th olspan="1">利润</th>
+              </tr>
+              <tr class="sec-head">
+                <td width="3%" class="hide"></td>
+                <td width="6%" class="bold">胜胜</td>
+                <td width="6%" class="bold">胜平</td>
+                <td width="6%" class="bold">胜负</td>
+                <td width="6%" class="bold">平胜</td>
+                <td width="6%" class="bold">平平</td>
+                <td width="6%" class="bold">平负</td>
+                <td width="6%" class="bold">负胜</td>
+                <td width="6%" class="bold">负平</td>
+                <td width="6%" class="bold">负负</td>
+
+                <td width="10%" class="bold">胜</td>
+                <td width="10%" class="bold">平</td>
+                <td width="10%" class="bold">负</td>
+                <td width="10%" class="bold"></td>
+              </tr>
+              <tr>
+                <td class="trend ${tdClass_jzPValue}">${ele.hisIndex.jzPValue > 0 ? "+" + ele.hisIndex.jzPValue : ele.hisIndex.jzPValue}</td>
+                <td class="trend ${ele.hisIndex.changeJzHhRate&&(ele.hisIndex.changeJzHhRate>0?'trend-up':'trend-down')} ${ele.hisIndex.jzHhHighlight?'red':''}">${ele.hisIndex.jzHhRate}</td>
+                <td class="trend ${ele.hisIndex.changeJzHdRate&&(ele.hisIndex.changeJzHdRate>0?'trend-up':'trend-down')} ${ele.hisIndex.jzHdHighlight?'red':''}">${ele.hisIndex.jzHdRate}</td>
+                <td class="trend ${ele.hisIndex.changeJzHaRate&&(ele.hisIndex.changeJzHaRate>0?'trend-down':'trend-up')} ${ele.hisIndex.jzHaHighlight?'red':''}">${ele.hisIndex.jzHaRate}</td>
+                <td class="trend ${ele.hisIndex.changeJzDhRate&&(ele.hisIndex.changeJzDhRate>0?'trend-up':'trend-down')} ${ele.hisIndex.jzDhHighlight?'red':''}">${ele.hisIndex.jzDhRate}</td>
+                <td class="trend ${ele.hisIndex.changeJzDdRate&&(ele.hisIndex.changeJzDdRate>0?'trend-up':'trend-down')} ${ele.hisIndex.jzDdHighlight?'red':''}">${ele.hisIndex.jzDdRate}</td>
+                <td class="trend ${ele.hisIndex.changeJzDaRate&&(ele.hisIndex.changeJzDaRate>0?'trend-down':'trend-up')} ${ele.hisIndex.jzDaHighlight?'red':''}">${ele.hisIndex.jzDaRate}</td>
+                <td class="trend ${ele.hisIndex.changeJzAhRate&&(ele.hisIndex.changeJzAhRate>0?'trend-up':'trend-down')} ${ele.hisIndex.jzAhHighlight?'red':''}">${ele.hisIndex.jzAhRate}</td>
+                <td class="trend ${ele.hisIndex.changeJzAdRate&&(ele.hisIndex.changeJzAdRate>0?'trend-up':'trend-down')} ${ele.hisIndex.jzAdHighlight?'red':''}">${ele.hisIndex.jzAdRate}</td>
+                <td class="trend ${ele.hisIndex.changeJzAaRate&&(ele.hisIndex.changeJzAaRate>0?'trend-down':'trend-up')} ${ele.hisIndex.jzAaHighlight?'red':''}">${ele.hisIndex.jzAaRate}</td>
+
+                <td class="trend ${ele.hisIndex.changeHgWRate&&(ele.hisIndex.changeHgWRate>0?'trend-up':'trend-down')} ${ele.hisIndex.hgWHighlight?'red':''}">${ele.hisIndex.hgWRate}</td>
+                <td class="trend ${ele.hisIndex.changeHgDRate&&(ele.hisIndex.changeHgDRate>0?'trend-up':'trend-down')} ${ele.hisIndex.hgDHighlight?'red':''}">${ele.hisIndex.hgPDisplay == ''? ele.hisIndex.hgDRate : ele.hisIndex.hgPDisplay}</td>
+                <td class="trend ${ele.hisIndex.changeHgLRate&&(ele.hisIndex.changeHgLRate>0?'trend-up':'trend-down')} ${ele.hisIndex.hgLHighlight?'red':''}">${ele.hisIndex.hgLRate}</td>
+                <td class="${tdClass_totalBenefitPoint}">${ele.hisIndex.totalBenefitPoint||''}</td>
+              </tr>
+              <tr>
+                <td class="hide"></td>
+                <td class="bold">${ele.hisIndex.jzWPayAmount>0? ele.hisIndex.jzWPayAmount : ''}</td>
+                <td class="bold">${ele.hisIndex.jzDPayAmount>0? ele.hisIndex.jzDPayAmount : ''}</td>
+                <td class="bold">${ele.hisIndex.jzLPayAmount>0? ele.hisIndex.jzLPayAmount : ''}</td>
+                <td class="bold">${ele.hisIndex.jzWPayAmount>0? ele.hisIndex.jzWPayAmount : ''}</td>
+                <td class="bold">${ele.hisIndex.jzDPayAmount>0? ele.hisIndex.jzDPayAmount : ''}</td>
+                <td class="bold">${ele.hisIndex.jzLPayAmount>0? ele.hisIndex.jzLPayAmount : ''}</td>
+                <td class="bold">${ele.hisIndex.jzWPayAmount>0? ele.hisIndex.jzWPayAmount : ''}</td>
+                <td class="bold">${ele.hisIndex.jzDPayAmount>0? ele.hisIndex.jzDPayAmount : ''}</td>
+                <td class="bold">${ele.hisIndex.jzLPayAmount>0? ele.hisIndex.jzLPayAmount : ''}</td>
+
+                <td class="bold">${ele.hisIndex.hgWPayAmount>0? ele.hisIndex.hgWPayAmount : ''}</td>
+                <td class="bold">${ele.hisIndex.hgDPayAmount>0? ele.hisIndex.hgDPayAmount : ''}</td>
+                <td class="bold">${ele.hisIndex.hgLPayAmount>0? ele.hisIndex.hgLPayAmount : ''}</td>
+                <td class="bold">${ele.hisIndex.totalBenefitAmount!=0? ele.hisIndex.totalBenefitAmount : ''}</td>
+              </tr>
+            </table>
+          </div>
+          `;
+          // 删除   
           if(true) nodeStr_index_history = `
             <div class="bot bot-history">
               <table>

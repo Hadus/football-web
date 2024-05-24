@@ -14,7 +14,7 @@ header {
 
 header>.header-box {
   height: 100%;
-  width: 80%;
+  width: 85%;
   min-width: 1300px;
   margin: 0 auto;
 }
@@ -116,7 +116,7 @@ p.to-user-manage.show {
 }
 
 section {
-  width: 80%;
+  width: 85%;
   min-width: 1300px;
   margin: 0 auto;
 }

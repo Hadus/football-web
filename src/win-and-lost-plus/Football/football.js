@@ -197,7 +197,7 @@
                     <th olspan="1">利润</th>
                   </tr>
                   <tr class="sec-head">
-                    <td width="3%" class="hide"></td>
+                    <td width="3%" class="hide-text"></td>
                     <td width="6%" class="bold">胜胜</td>
                     <td width="6%" class="bold">胜平</td>
                     <td width="6%" class="bold">胜负</td>
@@ -231,7 +231,7 @@
                     <td class="${tdClass_totalBenefitPoint}">${ele.totalBenefitPoint||''}</td>
                   </tr>
                   <tr>
-                    <td class="hide"></td>
+                    <td class="hide-text"></td>
                     <td class="bold">${ele.jzHdPayAmount>0? ele.jzHdPayAmount : ''}</td>
                     <td class="bold">${ele.jzHhPayAmount>0? ele.jzHhPayAmount : ''}</td>
                     <td class="bold">${ele.jzHaPayAmount>0? ele.jzHaPayAmount : ''}</td>
@@ -265,7 +265,7 @@
                 <th olspan="1">利润</th>
               </tr>
               <tr class="sec-head">
-                <td width="3%" class="hide"></td>
+                <td width="3%" class="hide-text"></td>
                 <td width="6%" class="bold">胜胜</td>
                 <td width="6%" class="bold">胜平</td>
                 <td width="6%" class="bold">胜负</td>
@@ -299,7 +299,7 @@
                 <td class="${tdClass_totalBenefitPoint}">${ele.hisIndex.totalBenefitPoint||''}</td>
               </tr>
               <tr>
-                <td class="hide"></td>
+                <td class="hide-text"></td>
                 <td class="bold">${ele.hisIndex.jzWPayAmount>0? ele.hisIndex.jzWPayAmount : ''}</td>
                 <td class="bold">${ele.hisIndex.jzDPayAmount>0? ele.hisIndex.jzDPayAmount : ''}</td>
                 <td class="bold">${ele.hisIndex.jzLPayAmount>0? ele.hisIndex.jzLPayAmount : ''}</td>
@@ -332,7 +332,7 @@
                   <th olspan="1">利润</th>
                 </tr>
                 <tr class="sec-head">
-                  <td width="3%" class="hide"></td>
+                  <td width="3%" class="hide-text"></td>
                   <td width="6%" class="bold">胜胜</td>
                   <td width="6%" class="bold">胜平</td>
                   <td width="6%" class="bold">胜负</td>
@@ -366,7 +366,7 @@
                   <td class="${tdClass_totalBenefitPoint}">${ele.totalBenefitPoint||''}</td>
                 </tr>
                 <tr>
-                  <td class="hide"></td>
+                  <td class="hide-text"></td>
                   <td class="bold">${ele.jzHdPayAmount>0? ele.jzHdPayAmount : ''}</td>
                   <td class="bold">${ele.jzHhPayAmount>0? ele.jzHhPayAmount : ''}</td>
                   <td class="bold">${ele.jzHaPayAmount>0? ele.jzHaPayAmount : ''}</td>
@@ -1000,8 +1000,16 @@
       if(w.showTabName === 'index'){
         const ele = res.data[0];
         keyList['totalBenefitPoint'].value = ele.totalBenefitPoint;
-        keyList['jzWPayAmount'].value = ele.jzWPayAmount>0? ele.jzWPayAmount : '';
-        keyList['jzDPayAmount'].value = ele.jzDPayAmount>0? ele.jzDPayAmount : '';
+        keyList['jzHdPayAmount'].value = ele.jzHdPayAmount>0? ele.jzHdPayAmount : '';
+        keyList['jzHhPayAmount'].value = ele.jzHhPayAmount>0? ele.jzHhPayAmount : '';
+        keyList['jzHaPayAmount'].value = ele.jzHaPayAmount>0? ele.jzHaPayAmount : '';
+        keyList['jzDhPayAmount'].value = ele.jzDhPayAmount>0? ele.jzDhPayAmount : '';
+        keyList['jzDdPayAmount'].value = ele.jzDdPayAmount>0? ele.jzDdPayAmount : '';
+        keyList['jzDaPayAmount'].value = ele.jzDaPayAmount>0? ele.jzDaPayAmount : '';
+        // keyList['jzAhPayAmount'].value = ele.jzAhPayAmount>0? ele.jzAhPayAmount : '';
+        // keyList['jzAdPayAmount'].value = ele.jzAdPayAmount>0? ele.jzAdPayAmount : '';
+        // keyList['jzAaPayAmount'].value = ele.jzAaPayAmount>0? ele.jzAaPayAmount : '';
+
         keyList['hgWPayAmount'].value = ele.hgWPayAmount>0? ele.hgWPayAmount : '';
         keyList['hgDPayAmount'].value = ele.hgDPayAmount>0? ele.hgDPayAmount : '';
         keyList['hgLPayAmount'].value = ele.hgLPayAmount>0? ele.hgLPayAmount : '';
@@ -1129,7 +1137,7 @@
                     <th width="20%" colspan="1">利润</th>
                   </tr>
                   <tr class="sec-head">
-                    <td width="3%" class="hide"></td>
+                    <td width="3%" class="hide-text"></td>
                     <td width="6%" class="bold">胜胜</td>
                     <td width="6%" class="bold">胜平</td>
                     <td width="6%" class="bold">胜负</td>
@@ -1147,9 +1155,15 @@
                   </tr>
                   <tr>
                     <td><input type="text" disabled data-input-key="jzPValue" value=${ele.jzPValue > 0 ? "+" + ele.jzPValue : ele.jzPValue}></td>
-                    <td><input type="number" data-input-key="jzWRate" value=${ele.jzWRate||''}></td>
-                    <td><input type="number" data-input-key="jzDRate" value=${ele.jzDRate||''}></td>
-                    <td><input type="number" data-input-key="jzLRate" value=${ele.jzLRate||''}></td>
+                    <td><input type="number" data-input-key="jzHdRate" value=${ele.jzHdRate||''}></td>
+                    <td><input type="number" data-input-key="jzHhRate" value=${ele.jzHhRate||''}></td>
+                    <td><input type="number" data-input-key="jzHaRate" value=${ele.jzHaRate||''}></td>
+                    <td><input type="number" data-input-key="jzDhRate" value=${ele.jzDhRate||''}></td>
+                    <td><input type="number" data-input-key="jzDdRate" value=${ele.jzDdRate||''}></td>
+                    <td><input type="number" data-input-key="jzDaRate" value=${ele.jzDaRate||''}></td>
+                    <td><input type="number" data-input-key="jzAhRate" value=${ele.jzAhRate||''}></td>
+                    <td><input type="number" data-input-key="jzAdRate" value=${ele.jzAdRate||''}></td>
+                    <td><input type="number" data-input-key="jzAaRate" value=${ele.jzAaRate||''}></td>
 
                     <td><input type="number" data-input-key="hgWRate" value=${ele.hgWRate||''}></td>
                     <td>
@@ -1165,15 +1179,44 @@
                     </td>
                   </tr>
                   <tr>
-                    <td class="v-hide"></td>
+                    <td class="hide-text"></td>
                     <td class="bold">
-                      <input type="number" data-output-key="jzWPayAmount" disabled value=${ele.jzWPayAmount>0? ele.jzWPayAmount : ''}>
+                      <input type="number" data-output-key="jzHdPayAmount" disabled value=${ele.jzHdPayAmount>0? ele.jzHdPayAmount : ''}>
                     </td>
                     <td class="bold">
-                      <input type="number" data-output-key="jzDPayAmount" disabled value=${ele.jzDPayAmount>0? ele.jzDPayAmount : ''}>
+                      <input type="number" data-output-key="jzHhPayAmount" disabled value=${ele.jzHhPayAmount>0? ele.jzHhPayAmount : ''}>
                     </td>
                     <td class="bold">
-                      <input type="number" disabled value=${ele.jzLPayAmount>0? ele.jzLPayAmount : ''}>
+                      <input type="number" data-output-key="jzHaPayAmount" disabled value=${ele.jzHaPayAmount>0? ele.jzHaPayAmount : ''}>
+                    </td>
+                    <td class="bold">
+                      <input type="number" data-output-key="jzDhPayAmount" disabled value=${ele.jzDhPayAmount>0? ele.jzDhPayAmount : ''}>
+                    </td>
+                    <td class="bold">
+                      <input type="number" data-output-key="jzDdPayAmount" disabled value=${ele.jzDdPayAmount>0? ele.jzDdPayAmount : ''}>
+                    </td>
+                    <td class="bold">
+                      <input type="number" data-output-key="jzDaPayAmount" disabled value=${ele.jzDaPayAmount>0? ele.jzDaPayAmount : ''}>
+                    </td>
+                    <!-- 之前lose 没有output 
+                    <td class="bold">
+                      <input type="number" data-output-key="jzAhPayAmount" disabled value=${ele.jzAhPayAmount>0? ele.jzAhPayAmount : ''}>
+                    </td>
+                    <td class="bold">
+                      <input type="number" data-output-key="jzAdPayAmount" disabled value=${ele.jzAdPayAmount>0? ele.jzAdPayAmount : ''}>
+                    </td>
+                    <td class="bold">
+                      <input type="number" data-output-key="jzAaPayAmount" disabled value=${ele.jzAaPayAmount>0? ele.jzAaPayAmount : ''}>
+                    </td>
+                    -->
+                    <td class="bold">
+                      <input type="number" disabled value=${ele.jzAhPayAmount>0? ele.jzAhPayAmount : ''}>
+                    </td>
+                    <td class="bold">
+                      <input type="number" disabled value=${ele.jzAdPayAmount>0? ele.jzAdPayAmount : ''}>
+                    </td>
+                    <td class="bold">
+                      <input type="number" disabled value=${ele.jzAaPayAmount>0? ele.jzAaPayAmount : ''}>
                     </td>
                     
                     <td class="bold">

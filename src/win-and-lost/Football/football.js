@@ -207,7 +207,7 @@
                     <td class="${tdClass_totalBenefitPoint}">${ele.totalBenefitPoint||''}</td>
                   </tr>
                   <tr>
-                    <td class="hide"></td>
+                    <td class="hide-text"></td>
                     <td class="bold">${ele.jzWPayAmount>0? ele.jzWPayAmount : ''}</td>
                     <td class="bold">${ele.jzDPayAmount>0? ele.jzDPayAmount : ''}</td>
                     <td class="bold">${ele.jzLPayAmount>0? ele.jzLPayAmount : ''}</td>
@@ -991,7 +991,7 @@
                     </td>
                   </tr>
                   <tr>
-                    <td class="v-hide"></td>
+                    <td class="hide"></td>
                     <td class="bold">
                       <input type="number" data-output-key="jzWPayAmount" disabled value=${ele.jzWPayAmount>0? ele.jzWPayAmount : ''}>
                     </td>

@@ -207,10 +207,6 @@ body {
   font-weight: bold;
 }
 
-.block table tr td.v-hide {
-  visibility: hidden;
-}
-
 .trend::before {
   content: "";
   width: 0;

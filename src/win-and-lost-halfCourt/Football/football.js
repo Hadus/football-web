@@ -27,10 +27,12 @@
       dom_dialogContent: d.querySelector('#s_dialogContent'), // mes box
       dialogData: null, // dialog 的数据
       dialogCallback: null, // dialog 的回调函数
+      isJzPayAsTotal: true, // 默认为true
     });
 
     defineServerPath(w.location.host); // 定义当前 server 环境
     getData();
+    bindSwitchPayAsTotal(); // 绑定切换投注分配
     initBetConst();
     bindBet(betAction);
     bindFilter(filterAction);
@@ -420,7 +422,7 @@
       const s_refreshFreq = s_bet.querySelector('#s_refreshFreq');
       const s_hightBenefitPoint = s_bet.querySelector('#s_hightBenefitPoint');
       const s_middleBenefitPoint = s_bet.querySelector('#s_middleBenefitPoint');
-      const s_bet_ensure = s_bet.querySelector('button');
+      const s_bet_ensure = s_bet.querySelector('#s_bet_ensure');
 
       s_bet_ensure.addEventListener('click', (e) => {
         isFirstTimeInitBet = false;
@@ -580,6 +582,19 @@
         }
       });
     }
+    /* 方法：绑定预警提醒开关 */
+    function bindSwitchPayAsTotal() {
+      const s_isJzPayAsTotal = d.querySelector('#s_isJzPayAsTotal');
+      s_isJzPayAsTotal.addEventListener('click', function (e) {
+        w.isJzPayAsTotal = !w.isJzPayAsTotal;
+        s_bet.querySelector('#s_bet_ensure').click();
+        if (isJzPayAsTotal) {
+          this.classList.add('active');
+        } else {
+          this.classList.remove('active');
+        }
+      })
+    }
 
     /* 方法：api 获取数据 */
     function getData_api(bet_params) {
@@ -589,7 +604,8 @@
         jzRebatePoint: bet_params.jzRebatePoint,
         hgERebatePoint: bet_params.hgERebatePoint,
         hgARebatePoint: bet_params.hgARebatePoint,
-        needFresh: bet_params.needFresh || false
+        needFresh: bet_params.needFresh || false,
+        
       } || {
         jzPayAmount: '',
         jzRebatePoint: '',
@@ -598,6 +614,7 @@
         needFresh: false,
       };
 
+      data.isJzPayAsTotal = w.isJzPayAsTotal; // 投注分配
       // 请求之前先停止 audio
       audioClose();
       const api_url = w.API_URL && w.API_URL.getData;
@@ -644,7 +661,7 @@
         jzRebatePoint: bet_params.jzRebatePoint,
         hgERebatePoint: bet_params.hgERebatePoint,
         hgARebatePoint: bet_params.hgARebatePoint,
-        needFresh: bet_params.needFresh || false
+        needFresh: bet_params.needFresh || false,
       } || {
         jzPayAmount: '',
         jzRebatePoint: '',
@@ -652,6 +669,7 @@
         hgARebatePoint: '',
         needFresh: false,
       };
+      data.isJzPayAsTotal = w.isJzPayAsTotal; // 投注分配
       // 请求之前先停止 audio
       audioClose();
       const url_getData = w.API_URL && w.API_URL.getData;

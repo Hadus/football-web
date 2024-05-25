@@ -45,7 +45,7 @@
         <li><label>预警利润 > <input class="small" id="s_hightBenefitPoint" type="number"> %</label></li>
         <li><label>跟踪利润 > <input class="small" id="s_middleBenefitPoint" type="number"> %</label></li>
         <li><label>刷新频率：<input id="s_refreshFreq" type="number"> 秒</label></li>
-        <li><button class="primary">确定</button></li>
+        <li><button class="primary" id="s_bet_ensure">确定</button></li>
       </ul>
     </div>
     <div class="list" id="s_list">
@@ -64,6 +64,12 @@
           <li class="audio_select">
             预警提醒：
             <div class="switch" id="s_audio_select">
+              <div class="switch-handle"></div>
+            </div>
+          </li>
+          <li class="isJzPayAsTotal">
+            投注分配：
+            <div class="switch active" id="s_isJzPayAsTotal">
               <div class="switch-handle"></div>
             </div>
           </li>

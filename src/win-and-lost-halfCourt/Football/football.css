@@ -269,10 +269,15 @@ body {
   }
 }
 
+.isJzPayAsTotal {
+  float: right;
+}
+
 .audio_select {
   float: right;
   color: #f56c6c;
   font-weight: 600;
+  margin-left: 20px;
 }
 
 .tabs {

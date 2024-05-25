@@ -9,7 +9,7 @@ window.fileList = {
     "./Lib/data/StatusData.js"
   ],
   fileList_ownJS :[ // own js
-    './User/userInfo.js',
+    // './User/userInfo.js',
     './Football/football.js'
   ]
 };

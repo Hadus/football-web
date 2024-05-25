@@ -289,5 +289,5 @@ div.s-drag div.header-box {
 }
 
 .hide {
-  display: none;
+  display: none !important;
 }

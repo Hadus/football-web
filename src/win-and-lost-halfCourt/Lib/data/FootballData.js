@@ -62,7 +62,7 @@ window.mock.res ={
           "jzAaBenefitAmount": null,
           "hgRateType": "欧   赔",
           "hgWRate": "3.50",
-          "hgPDisplay": "",
+          "hgPDisplay": "受让半球/平手",
           "hgPValue": 0.0,
           "hgDRate": "3.30",
           "hgLRate": "2.22",

@@ -257,7 +257,7 @@
           `;
           let nodeStr_index_history = '';
           if(ele.hisIndex) nodeStr_ttg_history = `
-          <div class="bot bot-history">
+          <div class="bot bot-history hide">
             <table>
               <tr class="head">
                 <th colspan="10">
@@ -324,7 +324,7 @@
           `;
           // 删除   
           if(true) nodeStr_index_history = `
-            <div class="bot bot-history">
+            <div class="bot bot-history hide">
               <table>
                 <tr class="head">
                   <th colspan="10">
@@ -1134,7 +1134,7 @@
               <label>请输入投注金额：
                 <input class="big" data-input-key="jzPayAmount" type="number" value="10000"> 元
               </label>
-              <div class="isJzPayAsTotal_calc">
+              <div class="isJzPayAsTotal_calc hide">
                 投注分配：
                 <div class="switch active" id="s_isJzPayAsTotal_calc">
                   <div class="switch-handle"></div>

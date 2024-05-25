@@ -340,3 +340,14 @@ body {
 .dialog-box .block input.small {
   width: 70px;
 }
+
+.dialog-box .dialog-title {
+  position: relative;
+}
+
+.dialog-box .isJzPayAsTotal_calc {
+  position: absolute;
+  right: 8px;
+  top: 0;
+  line-height: 38px;
+}

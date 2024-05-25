@@ -27,7 +27,8 @@
       dom_dialogContent: d.querySelector('#s_dialogContent'), // mes box
       dialogData: null, // dialog 的数据
       dialogCallback: null, // dialog 的回调函数
-      isJzPayAsTotal: true, // 默认为true
+      isJzPayAsTotal: true, // 投注分配默认为true
+      isJzPayAsTotal_calc: true,
     });
 
     defineServerPath(w.location.host); // 定义当前 server 环境
@@ -44,6 +45,7 @@
     bindEnsureMes(); // 弹窗-确定mes
     bindCancleDialog(); // 弹窗-取消dialog
     bindEnsureDialog(); // 弹窗-确定dialog
+
     bindDragBox(); // 绑定拖拽
 
     // 提示用户选择是否开启预警
@@ -582,7 +584,7 @@
         }
       });
     }
-    /* 方法：绑定预警提醒开关 */
+    /* 方法：绑定投注分配switch */
     function bindSwitchPayAsTotal() {
       const s_isJzPayAsTotal = d.querySelector('#s_isJzPayAsTotal');
       s_isJzPayAsTotal.addEventListener('click', function (e) {
@@ -885,7 +887,7 @@
     /* 方法：api 计算 */
     function getCalculator_api(params, outputNodeList) {
       let data = params || {};
-
+      data.isJzPayAsTotal_calc = w.isJzPayAsTotal_calc;
       const api_url = w.API_URL && w.API_URL.calculator;
 
       ajaxPromise({
@@ -905,7 +907,7 @@
     /* 方法：本地 计算 */
     function getCalculator_file(params, outputNodeList) {
       let data = params || {};
-
+      data.isJzPayAsTotal_calc = w.isJzPayAsTotal_calc;
       const api_url = w.API_URL && w.API_URL.calculator;
 
       setTimeout(() => {
@@ -927,7 +929,6 @@
           inputValueList[key] = ele.value.trim();
         }
       });
-
       
       let res_params = {
         jzRebatePoint: s_bet.querySelector('#s_jzRebatePoint').value,
@@ -968,9 +969,6 @@
             hasJzDate: true,
             hasJzRDate: false,
             point: Number(inputValueList.jzPValue) + '', // 去掉 + 号
-            rateD: inputValueList.jzDRate,
-            rateL: inputValueList.jzLRate,
-            rateW: inputValueList.jzWRate
           }
         } else{ // 让球
           console.log('让球')
@@ -978,11 +976,21 @@
             hasJzDate: false,
             hasJzRDate: true,
             point: Number(inputValueList.jzPValue) + '', // 去掉 + 号
-            rateRD: inputValueList.jzDRate,
-            rateRL: inputValueList.jzLRate,
-            rateRW: inputValueList.jzWRate,
           }
         }
+
+        // 半全场
+        res_params.userCalcReq.jzHafuRate = {
+          "hh": inputValueList.jzHhRate,
+          "hd": inputValueList.jzHdRate,
+          "ha": inputValueList.jzHaRate,
+          "dh": inputValueList.jzDhRate,
+          "dd": inputValueList.jzDdRate,
+          "da": inputValueList.jzDaRate,
+          "ah": inputValueList.jzAhRate,
+          "ad": inputValueList.jzAdRate,
+          "aa": inputValueList.jzAaRate
+        };
       }
       console.log(res_params);
       return {
@@ -1122,10 +1130,16 @@
             hgLRateFormat02 = hgLRateFormat02.split(' ')[1];
           }
           nodeStr += `
-            <div>
+            <div class="dialog-title">
               <label>请输入投注金额：
                 <input class="big" data-input-key="jzPayAmount" type="number" value="10000"> 元
               </label>
+              <div class="isJzPayAsTotal_calc">
+                投注分配：
+                <div class="switch active" id="s_isJzPayAsTotal_calc">
+                  <div class="switch-handle"></div>
+                </div>
+              </div>
             </div></br>
             <div class="block">
               <div class="top">
@@ -1300,6 +1314,8 @@
       }
 
       dom_dialogContent.innerHTML = nodeStr;
+      w.isJzPayAsTotal_calc = true; // 投注分配
+      bindSwitchPayAsTotal_calc(); // 绑定切换投注分配_calc
     }
 
     function clearDialogContent(){
@@ -1308,6 +1324,20 @@
       dom_dialogContent.innerHTML  = '';
       w.flag_dialogEnsure = 0;
       w.dialogData = null;
+    }
+
+    /* 方法：绑定投注分配 calc switch */
+    function bindSwitchPayAsTotal_calc() {
+      const s_isJzPayAsTotal_calc = d.querySelector('#s_isJzPayAsTotal_calc');
+      s_isJzPayAsTotal_calc.addEventListener('click', function (e) {
+        w.isJzPayAsTotal_calc = !w.isJzPayAsTotal_calc;
+        d.querySelector('#s_ensureDialog').click();
+        if (isJzPayAsTotal_calc) {
+          this.classList.add('active');
+        } else {
+          this.classList.remove('active');
+        }
+      })
     }
   }
 )(window, document);

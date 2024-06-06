@@ -1032,9 +1032,9 @@
         keyList['jzDhPayAmount'].value = ele.jzDhPayAmount>0? ele.jzDhPayAmount : '';
         keyList['jzDdPayAmount'].value = ele.jzDdPayAmount>0? ele.jzDdPayAmount : '';
         keyList['jzDaPayAmount'].value = ele.jzDaPayAmount>0? ele.jzDaPayAmount : '';
-        // keyList['jzAhPayAmount'].value = ele.jzAhPayAmount>0? ele.jzAhPayAmount : '';
-        // keyList['jzAdPayAmount'].value = ele.jzAdPayAmount>0? ele.jzAdPayAmount : '';
-        // keyList['jzAaPayAmount'].value = ele.jzAaPayAmount>0? ele.jzAaPayAmount : '';
+        keyList['jzAhPayAmount'].value = ele.jzAhPayAmount>0? ele.jzAhPayAmount : '';
+        keyList['jzAdPayAmount'].value = ele.jzAdPayAmount>0? ele.jzAdPayAmount : '';
+        keyList['jzAaPayAmount'].value = ele.jzAaPayAmount>0? ele.jzAaPayAmount : '';
 
         keyList['hgWPayAmount'].value = ele.hgWPayAmount>0? ele.hgWPayAmount : '';
         keyList['hgDPayAmount'].value = ele.hgDPayAmount>0? ele.hgDPayAmount : '';

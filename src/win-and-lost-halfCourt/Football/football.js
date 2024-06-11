@@ -1025,6 +1025,7 @@
       })
       if(w.showTabName === 'index'){
         const ele = res.data[0];
+        debugger
         keyList['totalBenefitPoint'].value = ele.totalBenefitPoint;
         keyList['jzHhPayAmount'].value = ele.jzHhPayAmount>0? ele.jzHhPayAmount : '';
         keyList['jzHdPayAmount'].value = ele.jzHdPayAmount>0? ele.jzHdPayAmount : '';
@@ -1230,7 +1231,7 @@
                     <td class="bold">
                       <input type="number" data-output-key="jzDaPayAmount" disabled value=${ele.jzDaPayAmount>0? ele.jzDaPayAmount : ''}>
                     </td>
-                    <!-- 之前lose 没有output 
+
                     <td class="bold">
                       <input type="number" data-output-key="jzAhPayAmount" disabled value=${ele.jzAhPayAmount>0? ele.jzAhPayAmount : ''}>
                     </td>
@@ -1239,16 +1240,6 @@
                     </td>
                     <td class="bold">
                       <input type="number" data-output-key="jzAaPayAmount" disabled value=${ele.jzAaPayAmount>0? ele.jzAaPayAmount : ''}>
-                    </td>
-                    -->
-                    <td class="bold">
-                      <input type="number" disabled value=${ele.jzAhPayAmount>0? ele.jzAhPayAmount : ''}>
-                    </td>
-                    <td class="bold">
-                      <input type="number" disabled value=${ele.jzAdPayAmount>0? ele.jzAdPayAmount : ''}>
-                    </td>
-                    <td class="bold">
-                      <input type="number" disabled value=${ele.jzAaPayAmount>0? ele.jzAaPayAmount : ''}>
                     </td>
                     
                     <td class="bold">

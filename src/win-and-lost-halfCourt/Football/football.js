@@ -154,6 +154,7 @@
         if(filterCondition){
           const tdClass_jzPValue = ele.jzPValue == 0 ? '' : (ele.jzPValue < 0 ? 'green' : 'red');
           let tdClass_totalBenefitPoint = '';
+
           // 需要判断 空 或者 0 吗
           if(ele.totalBenefitPoint > Number(hightBenefitPoint)){ // 报警利润
             tdClass_totalBenefitPoint = 'tips red flash';
@@ -163,6 +164,20 @@
             ele.isBet === -1 && alert_times_index.warning++;
           }
     
+          // history
+          let tdClass_jzPValue_history ='';
+          let tdClass_totalBenefitPoint_history = '';
+
+          if(ele.hisTopHafu){
+            tdClass_jzPValue_history = ele.hisTopHafu.jzPValue == 0 ? '' : (ele.hisTopHafu.jzPValue < 0 ? 'green' : 'red');
+            // 需要判断 空 或者 0 吗
+            if(ele.hisTopHafu.totalBenefitPoint > Number(hightBenefitPoint)){ // 报警利润
+              tdClass_totalBenefitPoint_history = 'tips red flash';
+            } else if(ele.hisTopHafu.totalBenefitPoint > Number(middleBenefitPoint)){ // 跟踪利润
+              tdClass_totalBenefitPoint_history = 'tips yellow';
+            }
+          }
+
           const nodeStr_index_main = `
             <div class="block">
               <div class="top">
@@ -255,76 +270,9 @@
               </div>
               <!-- lose </div> -->
           `;
-          let nodeStr_index_history = '';
-          if(ele.hisIndex) nodeStr_ttg_history = `
-          <div class="bot bot-history hide">
-            <table>
-              <tr class="head">
-                <th colspan="10">
-                  <span>${ele.hisIndex.jzRateType}</span>
-                </th>
-                <th colspan="3">
-                  <span>${ele.hisIndex.hgRateType}</span>
-                </th>
-                <th olspan="1">利润</th>
-              </tr>
-              <tr class="sec-head">
-                <td width="3%" class="hide-text"></td>
-                <td width="6%" class="bold">胜胜</td>
-                <td width="6%" class="bold">胜平</td>
-                <td width="6%" class="bold">胜负</td>
-                <td width="6%" class="bold">平胜</td>
-                <td width="6%" class="bold">平平</td>
-                <td width="6%" class="bold">平负</td>
-                <td width="6%" class="bold">负胜</td>
-                <td width="6%" class="bold">负平</td>
-                <td width="6%" class="bold">负负</td>
-
-                <td width="10%" class="bold">胜</td>
-                <td width="10%" class="bold">平</td>
-                <td width="10%" class="bold">负</td>
-                <td width="10%" class="bold"></td>
-              </tr>
-              <tr>
-                <td class="trend ${tdClass_jzPValue}">${ele.hisIndex.jzPValue > 0 ? "+" + ele.hisIndex.jzPValue : ele.hisIndex.jzPValue}</td>
-                <td class="trend ${ele.hisIndex.changeJzHhRate&&(ele.hisIndex.changeJzHhRate>0?'trend-up':'trend-down')} ${ele.hisIndex.jzHhHighlight?'red':''}">${ele.hisIndex.jzHhRate}</td>
-                <td class="trend ${ele.hisIndex.changeJzHdRate&&(ele.hisIndex.changeJzHdRate>0?'trend-up':'trend-down')} ${ele.hisIndex.jzHdHighlight?'red':''}">${ele.hisIndex.jzHdRate}</td>
-                <td class="trend ${ele.hisIndex.changeJzHaRate&&(ele.hisIndex.changeJzHaRate>0?'trend-down':'trend-up')} ${ele.hisIndex.jzHaHighlight?'red':''}">${ele.hisIndex.jzHaRate}</td>
-                <td class="trend ${ele.hisIndex.changeJzDhRate&&(ele.hisIndex.changeJzDhRate>0?'trend-up':'trend-down')} ${ele.hisIndex.jzDhHighlight?'red':''}">${ele.hisIndex.jzDhRate}</td>
-                <td class="trend ${ele.hisIndex.changeJzDdRate&&(ele.hisIndex.changeJzDdRate>0?'trend-up':'trend-down')} ${ele.hisIndex.jzDdHighlight?'red':''}">${ele.hisIndex.jzDdRate}</td>
-                <td class="trend ${ele.hisIndex.changeJzDaRate&&(ele.hisIndex.changeJzDaRate>0?'trend-down':'trend-up')} ${ele.hisIndex.jzDaHighlight?'red':''}">${ele.hisIndex.jzDaRate}</td>
-                <td class="trend ${ele.hisIndex.changeJzAhRate&&(ele.hisIndex.changeJzAhRate>0?'trend-up':'trend-down')} ${ele.hisIndex.jzAhHighlight?'red':''}">${ele.hisIndex.jzAhRate}</td>
-                <td class="trend ${ele.hisIndex.changeJzAdRate&&(ele.hisIndex.changeJzAdRate>0?'trend-up':'trend-down')} ${ele.hisIndex.jzAdHighlight?'red':''}">${ele.hisIndex.jzAdRate}</td>
-                <td class="trend ${ele.hisIndex.changeJzAaRate&&(ele.hisIndex.changeJzAaRate>0?'trend-down':'trend-up')} ${ele.hisIndex.jzAaHighlight?'red':''}">${ele.hisIndex.jzAaRate}</td>
-
-                <td class="trend ${ele.hisIndex.changeHgWRate&&(ele.hisIndex.changeHgWRate>0?'trend-up':'trend-down')} ${ele.hisIndex.hgWHighlight?'red':''}">${ele.hisIndex.hgWRate}</td>
-                <td class="trend ${ele.hisIndex.changeHgDRate&&(ele.hisIndex.changeHgDRate>0?'trend-up':'trend-down')} ${ele.hisIndex.hgDHighlight?'red':''}">${ele.hisIndex.hgPDisplay == ''? ele.hisIndex.hgDRate : ele.hisIndex.hgPDisplay}</td>
-                <td class="trend ${ele.hisIndex.changeHgLRate&&(ele.hisIndex.changeHgLRate>0?'trend-up':'trend-down')} ${ele.hisIndex.hgLHighlight?'red':''}">${ele.hisIndex.hgLRate}</td>
-                <td class="${tdClass_totalBenefitPoint}">${ele.hisIndex.totalBenefitPoint||''}</td>
-              </tr>
-              <tr>
-                <td class="hide-text"></td>
-                <td class="bold">${ele.hisIndex.jzWPayAmount>0? ele.hisIndex.jzWPayAmount : ''}</td>
-                <td class="bold">${ele.hisIndex.jzDPayAmount>0? ele.hisIndex.jzDPayAmount : ''}</td>
-                <td class="bold">${ele.hisIndex.jzLPayAmount>0? ele.hisIndex.jzLPayAmount : ''}</td>
-                <td class="bold">${ele.hisIndex.jzWPayAmount>0? ele.hisIndex.jzWPayAmount : ''}</td>
-                <td class="bold">${ele.hisIndex.jzDPayAmount>0? ele.hisIndex.jzDPayAmount : ''}</td>
-                <td class="bold">${ele.hisIndex.jzLPayAmount>0? ele.hisIndex.jzLPayAmount : ''}</td>
-                <td class="bold">${ele.hisIndex.jzWPayAmount>0? ele.hisIndex.jzWPayAmount : ''}</td>
-                <td class="bold">${ele.hisIndex.jzDPayAmount>0? ele.hisIndex.jzDPayAmount : ''}</td>
-                <td class="bold">${ele.hisIndex.jzLPayAmount>0? ele.hisIndex.jzLPayAmount : ''}</td>
-
-                <td class="bold">${ele.hisIndex.hgWPayAmount>0? ele.hisIndex.hgWPayAmount : ''}</td>
-                <td class="bold">${ele.hisIndex.hgDPayAmount>0? ele.hisIndex.hgDPayAmount : ''}</td>
-                <td class="bold">${ele.hisIndex.hgLPayAmount>0? ele.hisIndex.hgLPayAmount : ''}</td>
-                <td class="bold">${ele.hisIndex.totalBenefitAmount!=0? ele.hisIndex.totalBenefitAmount : ''}</td>
-              </tr>
-            </table>
-          </div>
-          `;
-          // 删除   
-          if(true) nodeStr_index_history = `
-            <div class="bot bot-history hide">
+          let nodeStr_index_history = ''; 
+          if(ele.hisTopHafu) nodeStr_index_history = `
+            <div class="bot bot-history">
               <table>
                 <tr class="head">
                   <th colspan="10">
@@ -353,38 +301,38 @@
                   <td width="10%" class="bold"></td>
                 </tr>
                 <tr>
-                  <td class="trend ${tdClass_jzPValue}">${ele.jzPValue > 0 ? "+" + ele.jzPValue : ele.jzPValue}</td>
-                  <td class="trend ${ele.changeJzHhRate&&(ele.changeJzHhRate>0?'trend-up':'trend-down')} ${ele.jzHhHighlight?'red':''}">${ele.jzHhRate}</td>
-                  <td class="trend ${ele.changeJzHdRate&&(ele.changeJzHdRate>0?'trend-up':'trend-down')} ${ele.jzHdHighlight?'red':''}">${ele.jzHdRate}</td>
-                  <td class="trend ${ele.changeJzHaRate&&(ele.changeJzHaRate>0?'trend-down':'trend-up')} ${ele.jzHaHighlight?'red':''}">${ele.jzHaRate}</td>
-                  <td class="trend ${ele.changeJzDhRate&&(ele.changeJzDhRate>0?'trend-up':'trend-down')} ${ele.jzDhHighlight?'red':''}">${ele.jzDhRate}</td>
-                  <td class="trend ${ele.changeJzDdRate&&(ele.changeJzDdRate>0?'trend-up':'trend-down')} ${ele.jzDdHighlight?'red':''}">${ele.jzDdRate}</td>
-                  <td class="trend ${ele.changeJzDaRate&&(ele.changeJzDaRate>0?'trend-down':'trend-up')} ${ele.jzDaHighlight?'red':''}">${ele.jzDaRate}</td>
-                  <td class="trend ${ele.changeJzAhRate&&(ele.changeJzAhRate>0?'trend-up':'trend-down')} ${ele.jzAhHighlight?'red':''}">${ele.jzAhRate}</td>
-                  <td class="trend ${ele.changeJzAdRate&&(ele.changeJzAdRate>0?'trend-up':'trend-down')} ${ele.jzAdHighlight?'red':''}">${ele.jzAdRate}</td>
-                  <td class="trend ${ele.changeJzAaRate&&(ele.changeJzAaRate>0?'trend-down':'trend-up')} ${ele.jzAaHighlight?'red':''}">${ele.jzAaRate}</td>
+                  <td class="trend ${tdClass_jzPValue_history}">${ele.hisTopHafu.jzPValue > 0 ? "+" + ele.hisTopHafu.jzPValue : ele.hisTopHafu.jzPValue}</td>
+                  <td class="trend ${ele.hisTopHafu.changeJzHhRate&&(ele.hisTopHafu.changeJzHhRate>0?'trend-up':'trend-down')} ${ele.hisTopHafu.jzHhHighlight?'red':''}">${ele.hisTopHafu.jzHhRate}</td>
+                  <td class="trend ${ele.hisTopHafu.changeJzHdRate&&(ele.hisTopHafu.changeJzHdRate>0?'trend-up':'trend-down')} ${ele.hisTopHafu.jzHdHighlight?'red':''}">${ele.hisTopHafu.jzHdRate}</td>
+                  <td class="trend ${ele.hisTopHafu.changeJzHaRate&&(ele.hisTopHafu.changeJzHaRate>0?'trend-down':'trend-up')} ${ele.hisTopHafu.jzHaHighlight?'red':''}">${ele.hisTopHafu.jzHaRate}</td>
+                  <td class="trend ${ele.hisTopHafu.changeJzDhRate&&(ele.hisTopHafu.changeJzDhRate>0?'trend-up':'trend-down')} ${ele.hisTopHafu.jzDhHighlight?'red':''}">${ele.hisTopHafu.jzDhRate}</td>
+                  <td class="trend ${ele.hisTopHafu.changeJzDdRate&&(ele.hisTopHafu.changeJzDdRate>0?'trend-up':'trend-down')} ${ele.hisTopHafu.jzDdHighlight?'red':''}">${ele.hisTopHafu.jzDdRate}</td>
+                  <td class="trend ${ele.hisTopHafu.changeJzDaRate&&(ele.hisTopHafu.changeJzDaRate>0?'trend-down':'trend-up')} ${ele.hisTopHafu.jzDaHighlight?'red':''}">${ele.hisTopHafu.jzDaRate}</td>
+                  <td class="trend ${ele.hisTopHafu.changeJzAhRate&&(ele.hisTopHafu.changeJzAhRate>0?'trend-up':'trend-down')} ${ele.hisTopHafu.jzAhHighlight?'red':''}">${ele.hisTopHafu.jzAhRate}</td>
+                  <td class="trend ${ele.hisTopHafu.changeJzAdRate&&(ele.hisTopHafu.changeJzAdRate>0?'trend-up':'trend-down')} ${ele.hisTopHafu.jzAdHighlight?'red':''}">${ele.hisTopHafu.jzAdRate}</td>
+                  <td class="trend ${ele.hisTopHafu.changeJzAaRate&&(ele.hisTopHafu.changeJzAaRate>0?'trend-down':'trend-up')} ${ele.hisTopHafu.jzAaHighlight?'red':''}">${ele.hisTopHafu.jzAaRate}</td>
 
-                  <td class="trend ${ele.changeHgWRate&&(ele.changeHgWRate>0?'trend-up':'trend-down')} ${ele.hgWHighlight?'red':''}">${ele.hgWRate}</td>
-                  <td class="trend ${ele.changeHgDRate&&(ele.changeHgDRate>0?'trend-up':'trend-down')} ${ele.hgDHighlight?'red':''}">${ele.hgPDisplay == ''? ele.hgDRate : ele.hgPDisplay}</td>
-                  <td class="trend ${ele.changeHgLRate&&(ele.changeHgLRate>0?'trend-up':'trend-down')} ${ele.hgLHighlight?'red':''}">${ele.hgLRate}</td>
-                  <td class="${tdClass_totalBenefitPoint}">${ele.totalBenefitPoint||''}</td>
+                  <td class="trend ${ele.hisTopHafu.changeHgWRate&&(ele.hisTopHafu.changeHgWRate>0?'trend-up':'trend-down')} ${ele.hisTopHafu.hgWHighlight?'red':''}">${ele.hisTopHafu.hgWRate}</td>
+                  <td class="trend ${ele.hisTopHafu.changeHgDRate&&(ele.hisTopHafu.changeHgDRate>0?'trend-up':'trend-down')} ${ele.hisTopHafu.hgDHighlight?'red':''}">${ele.hisTopHafu.hgPDisplay == ''? ele.hisTopHafu.hgDRate : ele.hisTopHafu.hgPDisplay}</td>
+                  <td class="trend ${ele.hisTopHafu.changeHgLRate&&(ele.hisTopHafu.changeHgLRate>0?'trend-up':'trend-down')} ${ele.hisTopHafu.hgLHighlight?'red':''}">${ele.hisTopHafu.hgLRate}</td>
+                  <td class="${tdClass_totalBenefitPoint_history}">${ele.hisTopHafu.totalBenefitPoint||''}</td>
                 </tr>
                 <tr>
                   <td class="hide-text"></td>
-                  <td class="bold">${ele.jzHhPayAmount>0? ele.jzHhPayAmount : ''}</td>
-                  <td class="bold">${ele.jzHdPayAmount>0? ele.jzHdPayAmount : ''}</td>
-                  <td class="bold">${ele.jzHaPayAmount>0? ele.jzHaPayAmount : ''}</td>
-                  <td class="bold">${ele.jzDhPayAmount>0? ele.jzDhPayAmount : ''}</td>
-                  <td class="bold">${ele.jzDdPayAmount>0? ele.jzDdPayAmount : ''}</td>
-                  <td class="bold">${ele.jzDaPayAmount>0? ele.jzDaPayAmount : ''}</td>
-                  <td class="bold">${ele.jzAhPayAmount>0? ele.jzAhPayAmount : ''}</td>
-                  <td class="bold">${ele.jzAdPayAmount>0? ele.jzAdPayAmount : ''}</td>
-                  <td class="bold">${ele.jzAaPayAmount>0? ele.jzAaPayAmount : ''}</td>
+                  <td class="bold">${ele.hisTopHafu.jzHhPayAmount>0? ele.hisTopHafu.jzHhPayAmount : ''}</td>
+                  <td class="bold">${ele.hisTopHafu.jzHdPayAmount>0? ele.hisTopHafu.jzHdPayAmount : ''}</td>
+                  <td class="bold">${ele.hisTopHafu.jzHaPayAmount>0? ele.hisTopHafu.jzHaPayAmount : ''}</td>
+                  <td class="bold">${ele.hisTopHafu.jzDhPayAmount>0? ele.hisTopHafu.jzDhPayAmount : ''}</td>
+                  <td class="bold">${ele.hisTopHafu.jzDdPayAmount>0? ele.hisTopHafu.jzDdPayAmount : ''}</td>
+                  <td class="bold">${ele.hisTopHafu.jzDaPayAmount>0? ele.hisTopHafu.jzDaPayAmount : ''}</td>
+                  <td class="bold">${ele.hisTopHafu.jzAhPayAmount>0? ele.hisTopHafu.jzAhPayAmount : ''}</td>
+                  <td class="bold">${ele.hisTopHafu.jzAdPayAmount>0? ele.hisTopHafu.jzAdPayAmount : ''}</td>
+                  <td class="bold">${ele.hisTopHafu.jzAaPayAmount>0? ele.hisTopHafu.jzAaPayAmount : ''}</td>
 
-                  <td class="bold">${ele.hgWPayAmount>0? ele.hgWPayAmount : ''}</td>
-                  <td class="bold">${ele.hgDPayAmount>0? ele.hgDPayAmount : ''}</td>
-                  <td class="bold">${ele.hgLPayAmount>0? ele.hgLPayAmount : ''}</td>
-                  <td class="bold">${ele.totalBenefitAmount!=0? ele.totalBenefitAmount : ''}</td>
+                  <td class="bold">${ele.hisTopHafu.hgWPayAmount>0? ele.hisTopHafu.hgWPayAmount : ''}</td>
+                  <td class="bold">${ele.hisTopHafu.hgDPayAmount>0? ele.hisTopHafu.hgDPayAmount : ''}</td>
+                  <td class="bold">${ele.hisTopHafu.hgLPayAmount>0? ele.hisTopHafu.hgLPayAmount : ''}</td>
+                  <td class="bold">${ele.hisTopHafu.totalBenefitAmount!=0? ele.hisTopHafu.totalBenefitAmount : ''}</td>
                 </tr>
               </table>
             </div>

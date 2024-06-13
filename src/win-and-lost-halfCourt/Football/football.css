@@ -335,6 +335,7 @@ body {
 
 .dialog-box .block input {
   width: 90%;
+  font-size: 13px;
 }
 
 .dialog-box .block input.small {

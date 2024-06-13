@@ -29,6 +29,7 @@
       dialogCallback: null, // dialog 的回调函数
       isJzPayAsTotal: true, // 投注分配默认为true
       isJzPayAsTotal_calc: true,
+      isShowHistory: false, // 是否展示历史数据
     });
 
     defineServerPath(w.location.host); // 定义当前 server 环境
@@ -45,6 +46,7 @@
     bindEnsureMes(); // 弹窗-确定mes
     bindCancleDialog(); // 弹窗-取消dialog
     bindEnsureDialog(); // 弹窗-确定dialog
+    bindSwitchHistory(); // 绑定切换历史
 
     bindDragBox(); // 绑定拖拽
 
@@ -272,7 +274,7 @@
           `;
           let nodeStr_index_history = ''; 
           if(ele.hisTopHafu) nodeStr_index_history = `
-            <div class="bot bot-history">
+            <div class="bot bot-history hide">
               <table>
                 <tr class="head">
                   <th colspan="10">
@@ -682,6 +684,22 @@
           this.classList.remove('active');
           audioClose();
         }
+      })
+    }
+
+    /* 方法：绑定切换历史 */
+    function bindSwitchHistory() {
+      const s_switchHistory = d.querySelector('#s_switchHistory');
+      const s_text = s_switchHistory.querySelector('span');
+      const s_icon = s_switchHistory.querySelector('i');
+
+      s_switchHistory.addEventListener('click', function (e) {
+        const s_historyBoxs = d.querySelectorAll('.bot-history');
+        w.isShowHistory = !w.isShowHistory;
+         s_switchHistory.classList.toggle('extend');
+        s_historyBoxs.forEach((ele) => {
+          ele.classList.toggle('hide');
+        })
       })
     }
 

@@ -42,6 +42,54 @@ body {
   margin-right: 5px;
 }
 
+li.audio_select {
+  float: right;
+  color: #f56c6c;
+  font-weight: 600;
+  margin-left: 20px;
+}
+
+li.switch-history {
+  float: right;
+  color: #9ed4a0;
+  font-weight: bold;
+  /* min-width: 50px !important; */
+  cursor: pointer;
+  user-select: none;
+}
+
+li.switch-history:hover {
+  color: #79d67c;
+}
+
+li.switch-history>span {
+  display: inline-block;
+  width: 24px;
+}
+
+li.switch-history>span::before {
+  content: '展开';
+  /* transform: translate(-26px); */
+}
+
+li.switch-history.extend>span::before {
+  content: '收起';
+}
+
+li.switch-history>i {
+  display: inline-block;
+  transform: scale(.8, 1.5) translate(0, -1px);
+  transition: all .1s;
+}
+
+li.switch-history.extend>i {
+  transform: rotate(90deg) scale(.8, 1.5) translate(1px, 0);
+}
+
+li.isJzPayAsTotal {
+  float: right;
+}
+
 .list>.table {
   display: none;
 }
@@ -269,16 +317,6 @@ body {
   }
 }
 
-.isJzPayAsTotal {
-  float: right;
-}
-
-.audio_select {
-  float: right;
-  color: #f56c6c;
-  font-weight: 600;
-  margin-left: 20px;
-}
 
 .tabs {
   height: 40px;

@@ -1025,8 +1025,9 @@
       })
       if(w.showTabName === 'index'){
         const ele = res.data[0];
-        debugger
+        // 第一排
         keyList['totalBenefitPoint'].value = ele.totalBenefitPoint;
+        // 第二排
         keyList['jzHhPayAmount'].value = ele.jzHhPayAmount>0? ele.jzHhPayAmount : '';
         keyList['jzHdPayAmount'].value = ele.jzHdPayAmount>0? ele.jzHdPayAmount : '';
         keyList['jzHaPayAmount'].value = ele.jzHaPayAmount>0? ele.jzHaPayAmount : '';
@@ -1041,6 +1042,21 @@
         keyList['hgDPayAmount'].value = ele.hgDPayAmount>0? ele.hgDPayAmount : '';
         keyList['hgLPayAmount'].value = ele.hgLPayAmount>0? ele.hgLPayAmount : '';
         keyList['totalBenefitAmount'].value = ele.totalBenefitAmount!=0? ele.totalBenefitAmount : '';
+        // 第三排
+        keyList['jzHhBenefitAmount'].value = ele.jzHhBenefitAmount>0? ele.jzHhBenefitAmount : '';
+        keyList['jzHdBenefitAmount'].value = ele.jzHdBenefitAmount>0? ele.jzHdBenefitAmount : '';
+        keyList['jzHaBenefitAmount'].value = ele.jzHaBenefitAmount>0? ele.jzHaBenefitAmount : '';
+        keyList['jzDhBenefitAmount'].value = ele.jzDhBenefitAmount>0? ele.jzDhBenefitAmount : '';
+        keyList['jzDdBenefitAmount'].value = ele.jzDdBenefitAmount>0? ele.jzDdBenefitAmount : '';
+        keyList['jzDaBenefitAmount'].value = ele.jzDaBenefitAmount>0? ele.jzDaBenefitAmount : '';
+        keyList['jzAhBenefitAmount'].value = ele.jzAhBenefitAmount>0? ele.jzAhBenefitAmount : '';
+        keyList['jzAdBenefitAmount'].value = ele.jzAdBenefitAmount>0? ele.jzAdBenefitAmount : '';
+        keyList['jzAaBenefitAmount'].value = ele.jzAaBenefitAmount>0? ele.jzAaBenefitAmount : '';
+
+        keyList['hgWBenefitAmount'].value = ele.hgWBenefitAmount>0? ele.hgWBenefitAmount : '';
+        keyList['hgDBenefitAmount'].value = ele.hgDBenefitAmount>0? ele.hgDBenefitAmount : '';
+        keyList['hgLBenefitAmount'].value = ele.hgLBenefitAmount>0? ele.hgLBenefitAmount : '';
+
       }
     }
     /* 方法：强制刷新数据 */  
@@ -1286,10 +1302,13 @@
                     </td>
                     
                     <td class="bold">
+                      <input type="number" data-output-key="hgWBenefitAmount" disabled value=${ele.hgWBenefitAmount>0? ele.hgWBenefitAmount : ''}>
                     </td>
                     <td class="bold">
+                      <input type="number" data-output-key="hgDBenefitAmount" disabled value=${ele.hgDBenefitAmount>0? ele.hgDBenefitAmount : ''}>
                     </td>
                     <td class="bold">
+                      <input type="number" data-output-key="hgLBenefitAmount" disabled value=${ele.hgLBenefitAmount>0? ele.hgLBenefitAmount : ''}>
                     </td>
                     <td class="bold">
                     </td>
